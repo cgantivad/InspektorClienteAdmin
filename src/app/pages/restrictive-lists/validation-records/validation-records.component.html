@@ -1,0 +1,62 @@
+<nb-card>
+    <nb-card-header>
+        VALIDACIÓN REGISTROS
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <nb-select
+                        id="validationStatus"
+                        selected=""
+                        fullWidth>
+                    <nb-option value="">Seleccione...</nb-option>
+                </nb-select>
+            </div>
+            <div class="col-md-3">
+                <nb-checkbox>Validar todos</nb-checkbox>
+            </div>
+
+            <div class="col-md-6">
+                <nb-form-field>
+                    <input [(ngModel)]="search"
+                           (keyup)="searchUser($event)"
+                           fullWidth
+                           nbInput>
+                    <button ghost nbButton nbSuffix>
+                        <nb-icon [icon]="'search-outline'"
+                                 pack="eva">
+                        </nb-icon>
+                    </button>
+                </nb-form-field>
+            </div>
+        </div>
+        <!--<div class="row mb-3">
+            <div class="col-md-1">
+                <button (click)="onCreate()" status="primary" nbButton nbSuffix>Agregar</button>
+            </div>
+            <div class="col-md-11">
+                <nb-form-field>
+                    <input [(ngModel)]="search"
+                           (keyup)="searchUser($event)"
+                           nbInput>
+                    <button ghost nbButton nbSuffix>
+                        <nb-icon [icon]="'search-outline'"
+                                 pack="eva">
+                        </nb-icon>
+                    </button>
+                </nb-form-field>
+            </div>
+        </div>-->
+
+        <ng2-smart-table class="example-smart-table"
+                         [settings]="settings"
+                         [source]="source">
+        </ng2-smart-table>
+
+    </nb-card-body>
+
+    <nb-card-footer>
+        <button (click)="onValidated()" status="primary" nbButton nbSuffix>VALIDAR REGISTROS</button>
+    </nb-card-footer>
+</nb-card>

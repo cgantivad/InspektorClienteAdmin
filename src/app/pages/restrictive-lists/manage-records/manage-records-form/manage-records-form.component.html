@@ -1,0 +1,200 @@
+<div class="col-lg-12">
+    <nb-card>
+        <nb-card-header>
+            <nav class="navigation">
+                <a href="#" (click)="back($event)" class="link back-link" aria-label="Back">
+                    <nb-icon icon="arrow-back"></nb-icon>
+                </a>
+                {{headerTitle}}
+            </nav>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="manageRecordForm">
+
+                <div class="form-group">
+                    <label class="label" for="user">Usuario que registra*</label>
+                    <input fullWidth nbInput id="user" formControlName="user"
+                           [status]="(user?.hasError('minlength') || user?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           placeholder="Usuario que registra">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="user?.hasError('minlength')"
+                                            [showMaxLength]="user?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                    <p class="error-message caption status-danger"
+                       *ngIf="documentError">
+                        {{nameError}}
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="documentType" class="label">Tipo de Documento*</label>
+                            <nb-select
+                                    id="documentType"
+                                    selected=""
+                                    formControlName="documentType"
+                                    fullWidth>
+                                <nb-option value="">Seleccione...</nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="personType" class="label">Tipo de Persona*</label>
+                            <nb-select
+                                    id="personType"
+                                    selected=""
+                                    formControlName="personType"
+                                    fullWidth>
+                                <nb-option value="">Seleccione...</nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="document">Documento de Identidad*</label>
+                    <input fullWidth nbInput id="document" formControlName="document"
+                           [status]="(document?.hasError('minlength') || document?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           placeholder="Documento de Identidad">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="document?.hasError('minlength')"
+                                            [showMaxLength]="document?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                    <p class="error-message caption status-danger"
+                       *ngIf="documentError">
+                        {{nameError}}
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="name">Nombre Completo*</label>
+                    <input fullWidth nbInput id="name" formControlName="name"
+                           [status]="(name?.hasError('minlength') || name?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Nombre Completo">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="name?.hasError('minlength')"
+                                            [showMaxLength]="name?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="strongAlias">Alias fuerte</label>
+                    <input fullWidth nbInput id="strongAlias" formControlName="strongAlias"
+                           [status]="(strongAlias?.hasError('minlength') || strongAlias?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Alias fuerte">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="strongAlias?.hasError('minlength')"
+                                            [showMaxLength]="strongAlias?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="weakAlias">Alias débil</label>
+                    <input fullWidth nbInput id="weakAlias" formControlName="weakAlias"
+                           [status]="(weakAlias?.hasError('minlength') || weakAlias?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Alias débil">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="weakAlias?.hasError('minlength')"
+                                            [showMaxLength]="weakAlias?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label for="typeListId" class="label">Lista(s)*</label>
+                    <nb-select
+                            id="typeListId"
+                            selected=""
+                            formControlName="typeListId"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label for="crime" class="label">Cargo / Delito*</label>
+                    <nb-select
+                            id="crime"
+                            selected=""
+                            formControlName="crime"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label for="source" class="label">Fuente*</label>
+                    <nb-select
+                            id="source"
+                            selected=""
+                            formControlName="source"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="zone">Zona</label>
+                    <input fullWidth nbInput id="zone" formControlName="zone"
+                           [status]="(zone?.hasError('minlength') || zone?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Zona">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="zone?.hasError('minlength')"
+                                            [showMaxLength]="zone?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="link">Link(s)*</label>
+                    <input fullWidth nbInput id="link" formControlName="link"
+                           [status]="(link?.hasError('minlength') || link?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Link(s)*">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="link?.hasError('minlength')"
+                                            [showMaxLength]="link?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label for="status" class="label">Estado</label>
+                    <nb-select
+                            id="status"
+                            selected=""
+                            formControlName="status"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="recordSummary">Resumen Registro*</label>
+                    <input fullWidth nbInput id="recordSummary" formControlName="recordSummary"
+                           [status]="(recordSummary?.hasError('minlength') || recordSummary?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Resumen Registro">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="recordSummary?.hasError('minlength')"
+                                            [showMaxLength]="recordSummary?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="acts">Hechos</label>
+                    <input fullWidth nbInput id="acts" formControlName="acts"
+                           [status]="(acts?.hasError('minlength') || acts?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Hechos">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="acts?.hasError('minlength')"
+                                            [showMaxLength]="acts?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+            </form>
+        </nb-card-body>
+        <nb-card-footer>
+                <button nbButton status="primary" [disabled]="!manageRecordForm.valid" (click)="save()" hero>GUARDAR
+                    CAMBIOS
+                </button>
+                <button class="ml-4" nbButton (click)="back($event)" hero>REGRESAR</button>
+        </nb-card-footer>
+    </nb-card>
+</div>

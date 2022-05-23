@@ -1,0 +1,83 @@
+<div class="col-lg-12">
+    <nb-card>
+        <nb-card-header>
+            <nav class="navigation">
+                <a href="#" (click)="back($event)" class="link back-link" aria-label="Back">
+                    <nb-icon icon="arrow-back"></nb-icon>
+                </a>
+                {{headerTitle}}
+            </nav>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="listTypeForm">
+                <div class="form-group">
+                    <label class="label" for="name">Nombre de la lista</label>
+                    <input fullWidth nbInput id="name" formControlName="name"
+                           [status]="(name?.hasError('minlength') || name?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           placeholder="Nombre de la lista">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="name?.hasError('minlength')"
+                                            [showMaxLength]="name?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                    <p class="error-message caption status-danger"
+                       *ngIf="nameError">
+                        {{nameError}}
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="description">Descripción</label>
+                    <input fullWidth nbInput id="description" formControlName="description"
+                           [status]="(description?.hasError('minlength') || description?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           class="form-control" placeholder="Descripción">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="description?.hasError('minlength')"
+                                            [showMaxLength]="description?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="source">Fuente</label>
+                    <input fullWidth nbInput id="source" formControlName="source"
+                           [status]="(source?.hasError('minlength') || source?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           placeholder="Fuente">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="source?.hasError('minlength')"
+                                            [showMaxLength]="source?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                    <p class="error-message caption status-danger"
+                       *ngIf="sourceError">
+                        {{sourceError}}
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="typeListGroupId" class="label">Grupo Tipo Lista</label>
+                    <nb-select
+                            id="typeListGroupId"
+                            selected=""
+                            formControlName="typeListGroupId"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label for="periodicityId" class="label">Periodicidad</label>
+                    <nb-select
+                            id="periodicityId"
+                            selected=""
+                            formControlName="periodicityId"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
+                </div>
+
+            </form>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="primary" [disabled]="!listTypeForm.valid" (click)="save()" hero>GUARDAR CAMBIOS</button>
+            <button nbButton (click)="back($event)" hero>REGRESAR</button>
+        </nb-card-footer>
+    </nb-card>
+</div>

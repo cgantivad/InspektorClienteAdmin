@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-sm-6">
+        <nb-card>
+            <nb-card-header>
+                <nav class="navigation">
+                    <a href="#" (click)="back($event)" class="link back-link" aria-label="Back">
+                        <nb-icon icon="arrow-back"></nb-icon>
+                    </a>
+                    {{headerTitle}}
+                </nav>
+            </nb-card-header>
+            <nb-card-body>
+                <form [formGroup]="groupListForm">
+                    <div class="form-group">
+                        <label class="label" for="name">Nombre de Grupo</label>
+                        <input fullWidth nbInput id="name" formControlName="name"
+                               [status]="(name?.hasError('minlength') || name?.hasError('maxlength')) ? 'danger' : 'primary'"
+                               placeholder="Nombre de Grupo">
+                        <ngx-validation-message label="First Name"
+                                                [showMinLength]="name?.hasError('minlength')"
+                                                [showMaxLength]="name?.hasError('maxlength')" minLength=3
+                                                maxLength=20></ngx-validation-message>
+                        <p class="error-message caption status-danger"
+                           *ngIf="nameError">
+                            {{nameError}}
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="description">Descripción</label>
+                        <textarea id="description"
+                                  rows="5"
+                                  formControlName="description"
+                                  class="form-control"
+                                  nbInput
+                                  fullWidth
+                                  shape="round"
+                                  [status]="(description?.hasError('minlength') || description?.hasError('maxlength')) ? 'danger' : 'primary'"
+                                  placeholder="Descripción">
+                    </textarea>
+                        <ngx-validation-message label="First Name"
+                                                [showMinLength]="description?.hasError('minlength')"
+                                                [showMaxLength]="description?.hasError('maxlength')" minLength=3
+                                                maxLength=20></ngx-validation-message>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colorId" class="label">Color asociado</label>
+                        <nb-select
+                                id="colorId"
+                                selected=""
+                                formControlName="colorId"
+                                fullWidth>
+                            <nb-option value="">Seleccione...</nb-option>
+                        </nb-select>
+                    </div>
+
+                </form>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton status="primary" [disabled]="!groupListForm.valid" (click)="save()" hero>GUARDAR
+                    CAMBIOS
+                </button>
+                <button nbButton (click)="back($event)" hero>REGRESAR</button>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+
+    <div class="col-md-6 col-lg-6 col-sm-6">
+        <nb-card>
+            <nb-card-header>CATEGORIAS POR COLORIMETRÍA</nb-card-header>
+            <nb-card-body>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
