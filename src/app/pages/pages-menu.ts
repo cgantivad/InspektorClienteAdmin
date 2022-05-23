@@ -34,88 +34,164 @@ export class PagesMenu {
         group: true,
       },
       {
-        title: 'Configuración',
-        icon: 'settings-2',
+        title: 'Mi Cuenta',
+        icon: 'person-outline',
         children: [
           {
             title: 'Agregar Usuario',
             link: '/pages/setting/adduser',
+            icon: 'person-add-outline'
           },
           {
             title: 'Consultar Usuario',
             link: '/pages/setting/getuser',
+            icon: 'search-outline'
           },
           {
-            title: 'Administración Tipo Terceros',
-            link: '/pages/setting/thirdpartymanage',
-          },
-          {
-            title:'Administracion de Tipos de Lista por Consulta',
-            link: '/pages/setting/companytypelist',
-          },
-          {
-            title:'Administrar Procuraduria',
-            link: '/pages/setting/manageprocuracy',
+            title: 'Cambio Contraseña',
+            link: '/pages/setting/changepwd',
+            icon: 'unlock-outline'
           }
-          ,
-          {
-            title:'Logo Empresa',
-            link: '/pages/setting/companylogo',
-          }
-
         ],
       },
       {
-        title: 'Notificaciones',
+        title: 'Administrar',
         icon: 'bell',
         children: [
           {
-            title: 'Configuración',
-            link: '/pages/notifications/settings',
+            title: 'Agregar Empresa',
+            link: '/pages/manage/addcompany',
+            icon:'folder-outline'
           },
           {
-            title: 'Enviadas',
-            link: '/pages/notifications/sent',
+            title: 'Planes',
+            link: '/pages/manage/plans',
+            icon:'folder-outline'
+            
           },
           {
-            title: 'Monitoreo',
-            link: '/pages/notifications/monitoring',
+            title: 'Procuraduria',
+            link: '/pages/manage/procuraduria',
+            icon:'folder-outline'
           },
+          {
+            title: 'Entidades',
+            link: '/pages/manage/entities',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Servicios Adicionales',
+            link: '/pages/manage/additional-services',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Lista PEPs',
+            link: '/pages/manage/list-pep',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Nombres y documentos',
+            link: '/pages/manage/names-documents',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Contenidos',
+            link: '/pages/manage/contents',
+            icon:'folder-outline'
+          }
         ]
       },
       {
-        title: 'Consultas',
-        icon: 'search-outline',
+        title: 'Listas Restrictivas',
+        icon: 'checkmark-square-outline',
         children: [
           {
-            title: 'Individual',
-            link: '/pages/queries/individual',
+            title: 'Tipo de Listas',
+            link: '/pages/restrictives-list/type-lists',
+            icon:'folder-outline'
           },
           {
-            title: 'Masiva',
-            link: '/pages/queries/bulk',
-          }        
+            title: 'Consultar Listas',
+            link: '/pages/restrictives-list/consult-lists',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Exportar Base',
+            link: '/pages/restrictives-list/export',
+            icon:'folder-outline'
+          }, 
+          {
+            title: 'Estadisticas Listas',
+            link: '/pages/restrictives-list/statistics-lists',
+            icon:'folder-outline'
+          }            
         ]
       },
       {
-        title: 'Listas Propias',
+        title: 'Reportes',
         icon: 'file-text-outline',
         children: [
           {
-            title: 'Tipo',
-            link: '/pages/own-lists/type',
+            title: 'Consultar',
+            link: '/pages/reports/consult-report',
+            icon:'folder-outline'
           },
           {
-            title: 'Cargar',
-            link: '/pages/own-lists/load',
-          },
-          {
-            title: 'Administrar',
-            link: '/pages/own-lists/manage',
-          }                
+            title: 'Historico',
+            link: '/pages/reports/historical-report',
+            icon:'folder-outline'
+          }             
         ]
       },
       {
+        title: 'Reportes Cifras',
+        icon: 'file-text-outline',
+        children: [
+          {
+            title: 'Inspektor Nuevos',
+            link: '/pages/reports-figures/inspektor-news',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Inspektor Actualizacion',
+            link: '/pages/reports-figures/inspektor-update',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Totales por Clientes',
+            link: '/pages/reports-figures/totals-customers',
+            icon:'folder-outline'
+          },
+          {
+            title: 'Total',
+            link: '/pages/reports-figures/totals',
+            icon:'folder-outline'
+          }                 
+        ]
+      },
+      {
+        title: 'Log',
+        icon: 'file-text-outline',
+        children: [
+          {
+            title: 'Consultar',
+            link: '/pages/log/consult-log',
+            icon:'folder-outline'
+          },         
+        ]
+      },
+      {
+        title: 'Consultas Realizadas',
+        icon: 'file-text-outline',
+        children: [
+          {
+            title: 'Ver',
+            link: '/pages/consultations/show',
+            icon:'folder-outline'
+          },         
+        ]
+      },
+     /* {
         title: 'Reportes',
         icon: 'pie-chart',
         children: [
@@ -145,7 +221,7 @@ export class PagesMenu {
           }        
           
         ]
-      },
+      },*/
 
       {
         title: 'Layout',

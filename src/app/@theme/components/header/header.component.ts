@@ -22,9 +22,10 @@ import { User } from '../../../@core/interfaces/common/users';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
-  userPictureOnly: boolean = false;
-  user: User;
-  checked: true;
+  public nametheme:string = 'Claro';
+  public userPictureOnly: boolean = false;
+  public user: User;
+  public checked:boolean= false;
 
   themes = [
     {
@@ -76,6 +77,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((user: User) => {
         this.user = user;
         this.userMenu = this.getMenuItems();
+        this.userStore.setSetting('default');
+        this.themeService.changeTheme('default');
       });
 
     const { xl } = this.breakpointService.getBreakpointsMap();
@@ -116,11 +119,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     {
       this.userStore.setSetting('dark');
       this.themeService.changeTheme('dark');
+      this.nametheme = 'Oscuro';
 
     }else{
 
       this.userStore.setSetting('default');
       this.themeService.changeTheme('default');
+      this.nametheme = 'Claro';
     }
 
 

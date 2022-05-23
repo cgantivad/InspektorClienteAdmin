@@ -11,6 +11,8 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { ReportsFiguresComponent } from './reports-figures/reports-figures.component';
+import { ConsultationsModule } from './consultations/consultations.module';
 
 const routes: Routes = [{
   path: '',
@@ -103,7 +105,33 @@ const routes: Routes = [{
       path:'reports',
       loadChildren:()=>import('./reports/reports.module')
         .then(m =>m.ReportsModule),
-    } 
+    },
+    {
+      path:'manage',
+      loadChildren:()=>import('./manage/manage.module')
+        .then(m =>m.ManageModule),
+    },
+    {
+      path:'restrictives-list',
+      loadChildren:()=>import('./restrictive-lists/restrictive-lists.module')
+        .then(m =>m.RestrictiveListsModule),
+    },
+    {
+      path:'reports-figures',
+      loadChildren:()=>import('./reports-figures/reports-figures.module')
+        .then(m =>m.ReportsFiguresModule),
+    },
+    {
+      path:'log',
+      loadChildren:()=>import('./log/log.module')
+        .then(m =>m.LogModule),
+    },
+    {
+      path:'consultations',
+      loadChildren:()=>import('./consultations/consultations.module')
+        .then(m =>m.ConsultationsModule),
+    }
+
     ,
     {
       path: '',

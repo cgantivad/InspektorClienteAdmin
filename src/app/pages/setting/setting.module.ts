@@ -4,21 +4,15 @@ import { SettingComponent } from './setting.component';
 import { routedComponents, SettingRoutingModule } from './setting-routing.module';
 import { AdduserComponent } from './components/adduser/adduser.component';
 import { GetuserComponent } from './components/getuser/getuser.component';
-import { ThirdpartymanageComponent } from './components/thirdpartymanage/thirdpartymanage.component'; 
-import { CompanytypelistComponent } from './components/companytypelist/companytypelist.component';
-import { ManageprocuracyComponent } from './components/manageprocuracy/manageprocuracy.component';
-import { CompanylogoComponent } from './components/companylogo/companylogo.component';
+
+import { ChangepwdComponent } from './components/changepwd/changepwd.component';
 
 
 const components = [
   SettingComponent,
   AdduserComponent,
   GetuserComponent,
-  ThirdpartymanageComponent,
-  CompanytypelistComponent,
-  ManageprocuracyComponent,  
-  CompanytypelistComponent,
-  CompanylogoComponent
+  ChangepwdComponent
 
 ];
 

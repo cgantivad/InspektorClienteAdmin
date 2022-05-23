@@ -1,9 +1,3 @@
-<!--
-  ~ Copyright (c) Akveo 2019. All Rights Reserved.
-  ~ Licensed under the Single Application / Multi Application License.
-  ~ See LICENSE_SINGLE_APP / LICENSE_MULTI_APP in the 'docs' folder for license information on type of purchased license.
-  -->
-
 <div class="header-container">
     <div class="logo-container">
         <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
@@ -11,7 +5,7 @@
         </a>
         <a class="logo" href="#" (click)="navigateHome()">Inspektor</a>
     </div>
-    <nb-toggle status="primary" [(checked)]="checked" (change)="setCheckedStatus($event)">Dark</nb-toggle>
+    <nb-toggle status="primary" [(checked)]="checked" (change)="setCheckedStatus($event)">{{nametheme}}</nb-toggle>
 </div>
 
 <div class="header-container">

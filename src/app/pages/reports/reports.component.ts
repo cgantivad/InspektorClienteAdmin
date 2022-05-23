@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ngx-reports',
-  templateUrl: './reports.component.html',
+  template: '<router-outlet></router-outlet>',
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
