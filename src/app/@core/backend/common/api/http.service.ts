@@ -18,7 +18,7 @@ export class HttpService {
     return environment.apiUrl;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
   getServerDataSource(uri: string): DataSource {
     return new ServerDataSource(this.http,

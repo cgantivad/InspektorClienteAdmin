@@ -1,0 +1,181 @@
+<nb-card>
+    <nb-card-header>
+        CONSULTA DE REGISTROS
+    </nb-card-header>
+
+    <nb-card-body>
+        <form>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Alias fuerte"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Número Identificación"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Entidad"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Listas"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Fecha creación/actualización"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Entidad"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="ID de registro"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Usuario que registró"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Fuente"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Zona"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Estado"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input
+                                nbInput
+                                fullWidth
+                                class="form-control"
+                                placeholder="Estado validado"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <button
+                    class="align-self-center"
+                    status="primary"
+                    nbButton
+                    nbSuffix>
+                BUSCAR
+            </button>
+            <button class="ml-4"
+                    nbButton
+                    hero>
+                CANCELAR
+            </button>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-card-header>
+        ADMINISTRAR REGISTROS DE LISTAS
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row mb-3">
+            <div class="col-md-1">
+                <button (click)="onCreate()" status="primary" nbButton nbSuffix>Agregar</button>
+            </div>
+            <div class="col-md-11">
+                <!--                <nb-form-field>-->
+                <!--                    <button ghost nbButton nbSuffix>-->
+                <!--                        <nb-icon [icon]="'search-outline'"-->
+                <!--                                 pack="eva">-->
+                <!--                        </nb-icon>-->
+                <!--                    </button>-->
+                <!--                </nb-form-field>-->
+            </div>
+        </div>
+
+        <ng2-smart-table class="example-smart-table"
+                         [settings]="settings"
+                         [source]="source">
+        </ng2-smart-table>
+
+    </nb-card-body>
+</nb-card>
