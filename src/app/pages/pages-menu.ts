@@ -108,18 +108,22 @@ export class PagesMenu {
           {
             title:'Grupos de Listas',
             link: '/pages/restrictive-lists/group-lists',
+            icon:'folder-outline',
           },
           {
             title:'Administrar Listas',
             link: '/pages/restrictive-lists/list-types',
+            icon:'folder-outline',
           },
           {
             title:'Administrar Registros',
             link: '/pages/restrictive-lists/manage-records',
+            icon:'folder-outline',
           },
           {
             title:'Validación Registros',
             link: '/pages/restrictive-lists/validation-records',
+            icon:'folder-outline',
           },
         ],
       },
