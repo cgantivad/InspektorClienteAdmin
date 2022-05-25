@@ -102,30 +102,26 @@ export class PagesMenu {
         ]
       },
       {
-        title: 'Listas Restrictivas',
+        title: 'Listas restrictivas',
         icon: 'checkmark-square-outline',
         children: [
           {
-            title: 'Tipo de Listas',
-            link: '/pages/restrictives-list/type-lists',
-            icon:'folder-outline'
+            title:'Grupos de Listas',
+            link: '/pages/restrictive-lists/group-lists',
           },
           {
-            title: 'Consultar Listas',
-            link: '/pages/restrictives-list/consult-lists',
-            icon:'folder-outline'
+            title:'Administrar Listas',
+            link: '/pages/restrictive-lists/list-types',
           },
           {
-            title: 'Exportar Base',
-            link: '/pages/restrictives-list/export',
-            icon:'folder-outline'
-          }, 
+            title:'Administrar Registros',
+            link: '/pages/restrictive-lists/manage-records',
+          },
           {
-            title: 'Estadisticas Listas',
-            link: '/pages/restrictives-list/statistics-lists',
-            icon:'folder-outline'
-          }            
-        ]
+            title:'Validación Registros',
+            link: '/pages/restrictive-lists/validation-records',
+          },
+        ],
       },
       {
         title: 'Reportes',

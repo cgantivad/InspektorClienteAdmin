@@ -112,9 +112,9 @@ const routes: Routes = [{
         .then(m =>m.ManageModule),
     },
     {
-      path:'restrictives-list',
-      loadChildren:()=>import('./restrictive-lists/restrictive-lists.module')
-        .then(m =>m.RestrictiveListsModule),
+      path: 'restrictive-lists',
+      loadChildren: () => import('./restrictive-lists/restrictive-lists.module')
+          .then(m => m.RestrictiveListsModule),
     },
     {
       path:'reports-figures',
