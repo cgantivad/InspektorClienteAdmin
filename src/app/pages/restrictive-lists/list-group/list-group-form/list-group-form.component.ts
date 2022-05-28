@@ -1,16 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {NbToastrService} from '@nebular/theme';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ListGroupService} from '../../backend/common/services/list-group.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ListGroup} from "../../interfaces/list-group";
 
 @Component({
-    selector: 'ngx-group-lists-form',
-    templateUrl: './group-lists-form.component.html',
-    styleUrls: ['./group-lists-form.component.scss'],
+    selector: 'ngx-list-group-form',
+    templateUrl: './list-group-form.component.html',
+    styleUrls: ['./list-group-form.component.scss'],
 })
-export class GroupListsFormComponent implements OnInit {
+export class ListGroupFormComponent implements OnInit {
 
     constructor(protected toastrService: NbToastrService,
                 private router: Router,
@@ -20,7 +21,7 @@ export class GroupListsFormComponent implements OnInit {
                 private fb: FormBuilder) {
     }
 
-    groupListForm: FormGroup;
+    formGroup: FormGroup;
     nameError = null;
     sourceError = null;
 
@@ -28,15 +29,15 @@ export class GroupListsFormComponent implements OnInit {
     headerTitle = 'CREAR GRUPO';
 
     get name() {
-        return this.groupListForm.get('name');
+        return this.formGroup.get('name');
     }
 
     get description() {
-        return this.groupListForm.get('description');
+        return this.formGroup.get('description');
     }
 
     get color() {
-        return this.groupListForm.get('color');
+        return this.formGroup.get('color');
     }
 
     ngOnInit(): void {
@@ -45,9 +46,9 @@ export class GroupListsFormComponent implements OnInit {
     }
 
     initForm() {
-        this.groupListForm = this.fb.group({
+        this.formGroup = this.fb.group({
             id: this.fb.control(''),
-            name: this.fb.control('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+            name: this.fb.control('', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
             description: this.fb.control('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
             color: this.fb.control('', [Validators.required]),
         });
@@ -60,8 +61,7 @@ export class GroupListsFormComponent implements OnInit {
             this.listGroupService.get(+id)
                 .subscribe(response => {
                     const listGroup = response.data;
-                    console.log(listGroup);
-                    this.groupListForm.setValue({
+                    this.formGroup.setValue({
                         id: listGroup.id ? listGroup.id : '',
                         name: listGroup.name ? listGroup.name : '',
                         description: listGroup.description ? listGroup.description : '',
@@ -76,7 +76,8 @@ export class GroupListsFormComponent implements OnInit {
     }
 
     save() {
-
+        const data: ListGroup = this.formGroup.value;
+        console.log(data);
     }
 
     back($event: MouseEvent) {

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GroupListsComponent } from './group-lists.component';
+import { ListGroupFormComponent } from './list-group-form.component';
 
-describe('GroupListsComponent', () => {
-  let component: GroupListsComponent;
-  let fixture: ComponentFixture<GroupListsComponent>;
+describe('ListGroupFormComponent', () => {
+  let component: ListGroupFormComponent;
+  let fixture: ComponentFixture<ListGroupFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GroupListsComponent ]
+      declarations: [ ListGroupFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GroupListsComponent);
+    fixture = TestBed.createComponent(ListGroupFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

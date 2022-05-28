@@ -18,8 +18,6 @@ import {
 import {ComponentsModule} from '../../@components/components.module';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {CustomHttpService} from '../../utils/custom-http.service';
-import {GroupListsComponent} from './group-lists/group-lists.component';
-import {GroupListsFormComponent} from './group-lists/group-lists-form/group-lists-form.component';
 import {ManageRecordsComponent} from './manage-records/manage-records.component';
 import {ManageRecordsFormComponent} from './manage-records/manage-records-form/manage-records-form.component';
 import {ManageListsComponent} from './manage-lists/manage-lists.component';
@@ -27,20 +25,23 @@ import {ValidationRecordsComponent} from './validation-records/validation-record
 import {ListGroupService} from './backend/common/services/list-group.service';
 import {ListGroupApi} from './backend/common/api/list-group.api';
 import {ColorSmartTableCellComponent} from '../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component';
-
+import { ListGroupComponent } from './list-group/list-group.component';
+import { ListGroupFormComponent } from './list-group/list-group-form/list-group-form.component';
 
 @NgModule({
     declarations: [
         ListTypesComponent,
         RestrictiveListsComponent,
         ListTypeFormComponent,
-        GroupListsComponent,
-        GroupListsFormComponent,
+        ListGroupComponent,
+        ListGroupFormComponent,
         ManageRecordsComponent,
         ManageRecordsFormComponent,
         ManageListsComponent,
         ValidationRecordsComponent,
         ColorSmartTableCellComponent,
+        ListGroupComponent,
+        ListGroupFormComponent,
     ],
     imports: [
         CommonModule,
@@ -65,5 +66,6 @@ import {ColorSmartTableCellComponent} from '../../custom-components/smart-table-
         ListGroupService,
     ],
 })
+
 export class RestrictiveListsModule {
 }

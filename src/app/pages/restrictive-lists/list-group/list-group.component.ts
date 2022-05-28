@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
 import {Router} from '@angular/router';
 import {ListGroupService} from '../backend/common/services/list-group.service';
+import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
+import {ColorSmartTableCellComponent} from '../../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component';
 import {Subject} from 'rxjs/Rx';
-import {ColorSmartTableCellComponent} from "../../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component";
 
 @Component({
-    selector: 'ngx-group-lists',
-    templateUrl: './group-lists.component.html',
-    styleUrls: ['./group-lists.component.scss'],
+    selector: 'ngx-list-group',
+    templateUrl: './list-group.component.html',
+    styleUrls: ['./list-group.component.scss'],
 })
-export class GroupListsComponent implements OnInit {
+export class ListGroupComponent implements OnInit {
 
     constructor(private router: Router,
                 private listGroupService: ListGroupService,

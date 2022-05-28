@@ -10,7 +10,7 @@
                 </nav>
             </nb-card-header>
             <nb-card-body>
-                <form [formGroup]="groupListForm">
+                <form [formGroup]="formGroup">
                     <div class="form-group">
                         <label class="label" for="name">Nombre de Grupo</label>
                         <input fullWidth nbInput id="name" formControlName="name"
@@ -46,20 +46,30 @@
 
                     <div class="form-group">
                         <label for="color" class="label">Color asociado</label>
-                        <nb-select
+                        <input fullWidth nbInput id="color" formControlName="color"
+                               style="height: 40px"
+                               type="color"
+                               placeholder="Color">
+                        <!--<nb-select
                                 id="color"
                                 selected=""
                                 formControlName="color"
                                 fullWidth>
                             <nb-option value="">Seleccione...</nb-option>
-                        </nb-select>
+                        </nb-select>-->
                     </div>
 
                 </form>
             </nb-card-body>
             <nb-card-footer>
-                <button nbButton status="primary" [disabled]="!groupListForm.valid" (click)="save()" hero>GUARDAR
-                    CAMBIOS
+                <!--<button nbButton status="primary"
+                        [disabled]="!formGroup.valid"
+                        (click)="save()" hero>
+                    GUARDAR CAMBIOS
+                </button>-->
+                <button nbButton status="primary"
+                        (click)="save()" hero>
+                    GUARDAR CAMBIOS
                 </button>
                 <button nbButton (click)="back($event)" hero>REGRESAR</button>
             </nb-card-footer>
