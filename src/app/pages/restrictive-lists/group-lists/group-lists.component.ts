@@ -1,18 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomServerDataSource} from "../../../utils/custom-server.data-source";
-import {Router} from "@angular/router";
+import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
+import {Router} from '@angular/router';
+import {ListGroupService} from '../backend/common/services/list-group.service';
+import {Subject} from 'rxjs/Rx';
+import {ColorSmartTableCellComponent} from "../../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component";
 
 @Component({
     selector: 'ngx-group-lists',
     templateUrl: './group-lists.component.html',
-    styleUrls: ['./group-lists.component.scss']
+    styleUrls: ['./group-lists.component.scss'],
 })
 export class GroupListsComponent implements OnInit {
 
-    constructor(private router: Router,) {
+    constructor(private router: Router,
+                private listGroupService: ListGroupService,
+    ) {
+        this.source = this.listGroupService.getListGroupsServerDataSource();
     }
 
-    search = '';
+    searchTextChanged = new Subject<string>();
+    searchText = '';
     source: CustomServerDataSource;
     settings = {
         actions: {
@@ -39,30 +46,32 @@ export class GroupListsComponent implements OnInit {
                 type: 'number',
                 filter: false,
             },
-            identification: {
+            name: {
                 title: 'Nombre de Grupo',
                 type: 'string',
                 filter: false,
             },
-            name: {
+            description: {
                 title: 'Descripción',
                 type: 'string',
                 filter: false,
             },
-            lastName: {
-                title: 'Colorimetría',
-                type: 'string',
-                filter: false,
-            },
-            email: {
+            color: {
                 title: 'Colorimetria',
-                type: 'string',
+                type: 'custom',
+                renderComponent: ColorSmartTableCellComponent,
                 filter: false,
             },
         },
     };
 
     ngOnInit(): void {
+        this.searchTextChanged
+            .debounceTime(250)
+            .distinctUntilChanged()
+            .subscribe((query) => {
+                this.source.setSearchQuery(query);
+            });
     }
 
     onCreate() {
@@ -74,7 +83,11 @@ export class GroupListsComponent implements OnInit {
         this.router.navigate([`/pages/restrictive-lists/group-lists/edit/${user.id}`]);
     }
 
-    searchUser($event: KeyboardEvent) {
+    search($event) {
+        this.searchTextChanged.next($event.target.value);
+    }
+
+    onDelete($event: any) {
 
     }
 }

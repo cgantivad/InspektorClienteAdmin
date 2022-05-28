@@ -27,13 +27,42 @@
 
                 <div class="form-group">
                     <label class="label" for="description">Descripción</label>
-                    <input fullWidth nbInput id="description" formControlName="description"
-                           [status]="(description?.hasError('minlength') || description?.hasError('maxlength')) ? 'danger' : 'primary'"
-                           class="form-control" placeholder="Descripción">
+                    <textarea id="description"
+                              rows="5"
+                              formControlName="description"
+                              class="form-control"
+                              nbInput
+                              fullWidth
+                              shape="round"
+                              [status]="(description?.hasError('minlength') || description?.hasError('maxlength')) ? 'danger' : 'primary'"
+                              placeholder="Descripción">
+                    </textarea>
                     <ngx-validation-message label="First Name"
                                             [showMinLength]="description?.hasError('minlength')"
                                             [showMaxLength]="description?.hasError('maxlength')" minLength=3
                                             maxLength=20></ngx-validation-message>
+                </div>
+
+                <div class="form-group">
+                    <label for="typeListGroupId" class="label">Grupo de Listas</label>
+                    <nb-select
+                            id="typeListGroupId"
+                            selected=""
+                            formControlName="typeListGroupId"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label for="countryId" class="label">País</label>
+                    <nb-select
+                            id="countryId"
+                            selected=""
+                            formControlName="typeListGroupId"
+                            fullWidth>
+                        <nb-option value="">Seleccione...</nb-option>
+                    </nb-select>
                 </div>
 
                 <div class="form-group">
@@ -49,17 +78,6 @@
                        *ngIf="sourceError">
                         {{sourceError}}
                     </p>
-                </div>
-
-                <div class="form-group">
-                    <label for="typeListGroupId" class="label">Grupo Tipo Lista</label>
-                    <nb-select
-                            id="typeListGroupId"
-                            selected=""
-                            formControlName="typeListGroupId"
-                            fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
-                    </nb-select>
                 </div>
 
                 <div class="form-group">

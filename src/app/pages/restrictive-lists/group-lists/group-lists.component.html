@@ -6,12 +6,12 @@
     <nb-card-body>
         <div class="row mb-3">
             <div class="col-md-1">
-                <button (click)="onCreate()" status="primary" nbButton nbSuffix>Agregar</button>
+                <button (click)="onCreate()" status="primary" nbButton nbSuffix>NUEVO GRUPO</button>
             </div>
             <div class="col-md-11">
                 <nb-form-field>
-                    <input [(ngModel)]="search"
-                           (keyup)="searchUser($event)"
+                    <input [(ngModel)]="searchText"
+                           (keyup)="search($event)"
                            nbInput>
                     <button ghost nbButton nbSuffix>
                         <nb-icon [icon]="'search-outline'"
@@ -23,6 +23,8 @@
         </div>
 
         <ng2-smart-table class="example-smart-table"
+                         (edit)="onEdit($event)"
+                         (delete)="onDelete($event)"
                          [settings]="settings"
                          [source]="source">
         </ng2-smart-table>
