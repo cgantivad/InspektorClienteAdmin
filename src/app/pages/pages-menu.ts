@@ -67,7 +67,7 @@ export class PagesMenu {
             title: 'Planes',
             link: '/pages/manage/plans',
             icon:'folder-outline'
-            
+
           },
           {
             title: 'Procuraduria',
@@ -107,7 +107,7 @@ export class PagesMenu {
         children: [
           {
             title:'Grupos de Listas',
-            link: '/pages/restrictive-lists/group-lists',
+            link: '/pages/restrictive-lists/list-groups',
             icon:'folder-outline',
           },
           {
@@ -140,7 +140,7 @@ export class PagesMenu {
             title: 'Historico',
             link: '/pages/reports/historical-report',
             icon:'folder-outline'
-          }             
+          }
         ]
       },
       {
@@ -166,7 +166,7 @@ export class PagesMenu {
             title: 'Total',
             link: '/pages/reports-figures/totals',
             icon:'folder-outline'
-          }                 
+          }
         ]
       },
       {
@@ -177,7 +177,7 @@ export class PagesMenu {
             title: 'Consultar',
             link: '/pages/log/consult-log',
             icon:'folder-outline'
-          },         
+          },
         ]
       },
       {
@@ -188,7 +188,7 @@ export class PagesMenu {
             title: 'Ver',
             link: '/pages/consultations/show',
             icon:'folder-outline'
-          },         
+          },
         ]
       },
      /* {
@@ -218,8 +218,8 @@ export class PagesMenu {
           {
             title: 'Certificación Actualizacion\nListas',
             link: '/pages/reports/lists-update-certification',
-          }        
-          
+          }
+
         ]
       },*/
 

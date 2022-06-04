@@ -27,6 +27,8 @@ import {ListGroupApi} from './backend/common/api/list-group.api';
 import {ColorSmartTableCellComponent} from '../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component';
 import { ListGroupComponent } from './list-group/list-group.component';
 import { ListGroupFormComponent } from './list-group/list-group-form/list-group-form.component';
+import {ListTypeService} from "./backend/common/services/list-type.service";
+import {ListTypeApi} from "./backend/common/api/list-type.api";
 
 @NgModule({
     declarations: [
@@ -64,6 +66,8 @@ import { ListGroupFormComponent } from './list-group/list-group-form/list-group-
         NbDialogService,
         ListGroupApi,
         ListGroupService,
+        ListTypeApi,
+        ListTypeService,
     ],
 })
 

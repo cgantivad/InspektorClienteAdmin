@@ -1,20 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomServerDataSource} from "../../../utils/custom-server.data-source";
-import {NbDialogService} from "@nebular/theme";
-import {ListTypeFormComponent} from "./list-type-form/list-type-form.component";
-import {Router} from "@angular/router";
+import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
+import {Router} from '@angular/router';
+import {ListTypeService} from '../backend/common/services/list-type.service';
+import {Subject} from 'rxjs/Rx';
 
 @Component({
     selector: 'ngx-list-types',
     templateUrl: './list-types.component.html',
-    styleUrls: ['./list-types.component.scss']
+    styleUrls: ['./list-types.component.scss'],
 })
 export class ListTypesComponent implements OnInit {
 
-    constructor(private router: Router, private dialogService: NbDialogService,) {
+    constructor(private router: Router, private listTypeService: ListTypeService,
+    ) {
+        this.source = this.listTypeService.getListTypesServerDataSource();
     }
 
-    search = '';
+    searchText = '';
+    searchTextChanged = new Subject<string>();
     source: CustomServerDataSource;
     settings = {
         actions: {
@@ -65,6 +68,12 @@ export class ListTypesComponent implements OnInit {
     };
 
     ngOnInit(): void {
+        this.searchTextChanged
+            .debounceTime(250)
+            .distinctUntilChanged()
+            .subscribe((query) => {
+                this.source.setSearchQuery(query);
+            });
     }
 
     onCreate() {
@@ -72,11 +81,15 @@ export class ListTypesComponent implements OnInit {
     }
 
     onEdit($event: any) {
-        const user = $event.data;
-        this.router.navigate([`/pages/restrictive-lists/list-types/${user.id}`]);
+        const record = $event.data;
+        this.router.navigate([`/pages/restrictive-lists/list-types/edit/${record.id}`]);
     }
 
-    searchUser($event: KeyboardEvent) {
+    search($event) {
+        this.searchTextChanged.next($event.target.value);
+    }
+
+    onDelete($event: any) {
 
     }
 }

@@ -5,10 +5,10 @@
 
     <nb-card-body>
         <div class="row mb-3">
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <button (click)="onCreate()" status="primary" nbButton nbSuffix>NUEVO GRUPO</button>
             </div>
-            <div class="col-md-11">
+            <div class="col-md-10">
                 <nb-form-field>
                     <input [(ngModel)]="searchText"
                            (keyup)="search($event)"

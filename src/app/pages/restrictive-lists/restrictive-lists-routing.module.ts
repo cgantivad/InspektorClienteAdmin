@@ -15,15 +15,15 @@ const routes: Routes = [
         component: RestrictiveListsComponent,
         children: [
             {
-                path: 'group-lists',
+                path: 'list-groups',
                 component: ListGroupComponent,
             },
             {
-                path: 'group-lists/create',
+                path: 'list-groups/create',
                 component: ListGroupFormComponent,
             },
             {
-                path: 'group-lists/edit/:id',
+                path: 'list-groups/edit/:id',
                 component: ListGroupFormComponent,
             },
             {

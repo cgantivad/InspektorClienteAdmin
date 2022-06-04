@@ -75,12 +75,12 @@ export class ListGroupComponent implements OnInit {
     }
 
     onCreate() {
-        this.router.navigate([`/pages/restrictive-lists/group-lists/create`]);
+        this.router.navigate([`/pages/restrictive-lists/list-groups/create`]);
     }
 
     onEdit($event: any) {
         const user = $event.data;
-        this.router.navigate([`/pages/restrictive-lists/group-lists/edit/${user.id}`]);
+        this.router.navigate([`/pages/restrictive-lists/list-groups/edit/${user.id}`]);
     }
 
     search($event) {

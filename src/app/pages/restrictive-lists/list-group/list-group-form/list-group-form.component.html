@@ -16,7 +16,7 @@
                         <input fullWidth nbInput id="name" formControlName="name"
                                [status]="(name?.hasError('minlength') || name?.hasError('maxlength')) ? 'danger' : 'primary'"
                                placeholder="Nombre de Grupo">
-                        <ngx-validation-message label="First Name"
+                        <ngx-validation-message label="Nombre de Grupo"
                                                 [showMinLength]="name?.hasError('minlength')"
                                                 [showMaxLength]="name?.hasError('maxlength')" minLength=3
                                                 maxLength=20></ngx-validation-message>
@@ -38,7 +38,7 @@
                                   [status]="(description?.hasError('minlength') || description?.hasError('maxlength')) ? 'danger' : 'primary'"
                                   placeholder="Descripción">
                     </textarea>
-                        <ngx-validation-message label="First Name"
+                        <ngx-validation-message label="Descripción"
                                                 [showMinLength]="description?.hasError('minlength')"
                                                 [showMaxLength]="description?.hasError('maxlength')" minLength=3
                                                 maxLength=20></ngx-validation-message>
@@ -50,28 +50,17 @@
                                style="height: 40px"
                                type="color"
                                placeholder="Color">
-                        <!--<nb-select
-                                id="color"
-                                selected=""
-                                formControlName="color"
-                                fullWidth>
-                            <nb-option value="">Seleccione...</nb-option>
-                        </nb-select>-->
                     </div>
 
                 </form>
             </nb-card-body>
             <nb-card-footer>
-                <!--<button nbButton status="primary"
+                <button nbButton status="primary"
                         [disabled]="!formGroup.valid"
                         (click)="save()" hero>
                     GUARDAR CAMBIOS
-                </button>-->
-                <button nbButton status="primary"
-                        (click)="save()" hero>
-                    GUARDAR CAMBIOS
                 </button>
-                <button nbButton (click)="back($event)" hero>REGRESAR</button>
+                <button class="ml-4" nbButton (click)="back($event)" hero>REGRESAR</button>
             </nb-card-footer>
         </nb-card>
     </div>

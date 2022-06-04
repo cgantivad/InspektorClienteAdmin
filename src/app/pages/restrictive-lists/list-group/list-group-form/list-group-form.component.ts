@@ -77,10 +77,10 @@ export class ListGroupFormComponent implements OnInit {
 
     save() {
         const id = this.route.snapshot.paramMap.get('id');
-        const user: ListGroup = this.formGroup.value;
+        const data: ListGroup = this.formGroup.value;
 
         if (id == null) {
-            this.listGroupService.create(user).subscribe(() => {
+            this.listGroupService.create(data).subscribe(() => {
                 this.formGroup.reset();
                 this.toastrService.success('', '¡Registro exitoso!', {
                     icon: '',
@@ -90,7 +90,7 @@ export class ListGroupFormComponent implements OnInit {
                 this.setupErrorResponse(errorResponse);
             });
         } else {
-            this.listGroupService.update(+id, user).subscribe((record) => {
+            this.listGroupService.update(+id, data).subscribe((record) => {
                 this.toastrService.success('', '¡Registro exitoso!', {
                     icon: '',
                 });
