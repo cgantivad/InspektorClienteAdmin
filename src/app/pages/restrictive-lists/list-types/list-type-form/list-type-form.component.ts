@@ -27,6 +27,7 @@ export class ListTypeFormComponent implements OnInit {
     descriptionError = null;
     sourceError = null;
     headerTitle = 'CREAR LISTA';
+    listType: ListType;
 
     get name() {
         return this.formGroup.get('name');
@@ -76,6 +77,7 @@ export class ListTypeFormComponent implements OnInit {
             this.listTypeService.get(+id)
                 .subscribe(response => {
                     const record = response.data;
+                    this.listType = record;
                     this.formGroup.setValue({
                         id: record.id ? record.id : '',
                         name: record.name ? record.name : '',

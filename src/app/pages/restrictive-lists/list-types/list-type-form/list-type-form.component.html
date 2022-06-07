@@ -51,6 +51,8 @@
                             formControlName="listGroupId"
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
+                        <nb-option *ngFor="let listGroup of listType?.listGroups"
+                                   value="{{listGroup.id}}}">{{listGroup.name}}</nb-option>
                     </nb-select>
                 </div>
 
@@ -62,6 +64,8 @@
                             formControlName="countryId"
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
+                        <nb-option *ngFor="let country of listType?.countries"
+                                   value="{{country.id}}}">{{country.name}}</nb-option>
                     </nb-select>
                 </div>
 
@@ -88,13 +92,16 @@
                             formControlName="periodicityId"
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
+                        <nb-option *ngFor="let periodicity of listType?.periodicities"
+                                   value="{{periodicity.id}}}">{{periodicity.name}}</nb-option>
                     </nb-select>
                 </div>
 
             </form>
         </nb-card-body>
         <nb-card-footer>
-            <button nbButton status="primary" [disabled]="!formGroup.valid" (click)="save()" hero>GUARDAR CAMBIOS</button>
+            <button nbButton status="primary" [disabled]="!formGroup.valid" (click)="save()" hero>GUARDAR CAMBIOS
+            </button>
             <button nbButton class="ml-4" (click)="back($event)" hero>REGRESAR</button>
         </nb-card-footer>
     </nb-card>
