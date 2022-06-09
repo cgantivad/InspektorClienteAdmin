@@ -28,4 +28,8 @@ export class ListTypeApi {
     update(id: number, data: ListType): Observable<ListType> {
         return this.api.put(`${this.apiController}/${id}`, data);
     }
+
+    getBaseListType(): Observable<ApiResponse<ListType>> {
+        return this.api.get(`${this.apiController}/create`);
+    }
 }

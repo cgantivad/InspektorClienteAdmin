@@ -61,10 +61,10 @@ export class ListTypeFormComponent implements OnInit {
     initForm() {
         this.formGroup = this.fb.group({
             id: this.fb.control(''),
-            name: this.fb.control('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-            description: this.fb.control('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
-            source: this.fb.control('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
-            listGroupId: this.fb.control('', [Validators.required]),
+            name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
+            description: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+            source: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+            listGroupId: this.fb.control(null, [Validators.required]),
             countryId: this.fb.control('', [Validators.required]),
             periodicityId: this.fb.control('', [Validators.required]),
         });
@@ -73,26 +73,41 @@ export class ListTypeFormComponent implements OnInit {
     loadData() {
         const id = this.route.snapshot.paramMap.get('id');
         if (id != null) {
-            this.headerTitle = 'EDITAR GRUPO';
+            this.headerTitle = 'EDITAR LISTA';
             this.listTypeService.get(+id)
                 .subscribe(response => {
-                    const record = response.data;
-                    this.listType = record;
-                    this.formGroup.setValue({
-                        id: record.id ? record.id : '',
-                        name: record.name ? record.name : '',
-                        description: record.description ? record.description : '',
-                        source: record.source ? record.source : '',
-                        listGroupId: record.listGroupId ? record.listGroupId : '',
-                        countryId: record.countryId ? record.countryId : '',
-                        periodicityId: record.periodicityId ? record.periodicityId : '',
-                    });
+                    const data = response.data;
+                    this.setFormGroup(data);
                 }, error => {
                     this.toastrService.danger('', 'Registro no econtrado', {
                         icon: '',
                     });
                 });
+        } else {
+            this.listTypeService.getBaseListType()
+                .subscribe(response => {
+                    const data = response.data;
+                    this.setFormGroup(data);
+                }, error => {
+                    this.toastrService.danger('', error, {
+                        icon: '',
+                    });
+                });
         }
+    }
+
+    setFormGroup(record: ListType) {
+        this.listType = record;
+        console.log('this.listType', this.listType);
+        this.formGroup.setValue({
+            id: record.id ? record.id : '',
+            name: record.name ? record.name : '',
+            description: record.description ? record.description : '',
+            source: record.source ? record.source : '',
+            listGroupId: record.listGroupId ? record.listGroupId : '',
+            countryId: record.countryId ? record.countryId : '',
+            periodicityId: record.periodicityId ? record.periodicityId : '',
+        });
     }
 
     save() {

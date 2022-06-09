@@ -10,6 +10,10 @@ export interface ListType {
     listGroupId: number;
     countryId: number;
     periodicityId: number;
+
+    periodicity: ListPeriodicity;
+    listGroup: ListGroup;
+
     listGroups: ListGroup[];
     countries: Country[];
     periodicities: ListPeriodicity[];

@@ -47,12 +47,12 @@
                     <label for="listGroupId" class="label">Grupo de Listas</label>
                     <nb-select
                             id="listGroupId"
-                            selected=""
                             formControlName="listGroupId"
+                            [(selected)]='listType.listGroupId'
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
                         <nb-option *ngFor="let listGroup of listType?.listGroups"
-                                   value="{{listGroup.id}}}">{{listGroup.name}}</nb-option>
+                                   [value]="listGroup.id">{{listGroup.name}}</nb-option>
                     </nb-select>
                 </div>
 
@@ -60,12 +60,12 @@
                     <label for="countryId" class="label">País</label>
                     <nb-select
                             id="countryId"
-                            selected=""
+                            [(selected)]='listType.countryId'
                             formControlName="countryId"
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
                         <nb-option *ngFor="let country of listType?.countries"
-                                   value="{{country.id}}}">{{country.name}}</nb-option>
+                                   [value]="country.id">{{country.name}}</nb-option>
                     </nb-select>
                 </div>
 
@@ -88,15 +88,14 @@
                     <label for="periodicityId" class="label">Periodicidad</label>
                     <nb-select
                             id="periodicityId"
-                            selected=""
+                            [(selected)]='listType.periodicityId'
                             formControlName="periodicityId"
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
                         <nb-option *ngFor="let periodicity of listType?.periodicities"
-                                   value="{{periodicity.id}}}">{{periodicity.name}}</nb-option>
+                                   [value]="periodicity.id">{{periodicity.name}}</nb-option>
                     </nb-select>
                 </div>
-
             </form>
         </nb-card-body>
         <nb-card-footer>
