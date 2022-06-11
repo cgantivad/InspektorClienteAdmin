@@ -7,7 +7,7 @@ import {ListTypeFormComponent} from './list-types/list-type-form/list-type-form.
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
     NbButtonModule,
-    NbCardModule, NbCheckboxModule,
+    NbCardModule, NbCheckboxModule, NbDatepickerModule,
     NbDialogService,
     NbFormFieldModule,
     NbIconModule,
@@ -29,6 +29,8 @@ import { ListGroupComponent } from './list-group/list-group.component';
 import { ListGroupFormComponent } from './list-group/list-group-form/list-group-form.component';
 import {ListTypeService} from "./backend/common/services/list-type.service";
 import {ListTypeApi} from "./backend/common/api/list-type.api";
+import {ListApi} from "./backend/common/api/list.api";
+import {ListService} from "./backend/common/services/list.service";
 
 @NgModule({
     declarations: [
@@ -60,6 +62,7 @@ import {ListTypeApi} from "./backend/common/api/list-type.api";
         NbOptionModule,
         NbSelectModule,
         NbCheckboxModule,
+        NbDatepickerModule,
     ],
     providers: [
         CustomHttpService,
@@ -68,6 +71,8 @@ import {ListTypeApi} from "./backend/common/api/list-type.api";
         ListGroupService,
         ListTypeApi,
         ListTypeService,
+        ListApi,
+        ListService,
     ],
 })
 

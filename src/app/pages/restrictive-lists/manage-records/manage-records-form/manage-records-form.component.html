@@ -9,22 +9,7 @@
             </nav>
         </nb-card-header>
         <nb-card-body>
-            <form [formGroup]="manageRecordForm">
-
-                <div class="form-group">
-                    <label class="label" for="user">Usuario que registra*</label>
-                    <input fullWidth nbInput id="user" formControlName="user"
-                           [status]="(user?.hasError('minlength') || user?.hasError('maxlength')) ? 'danger' : 'primary'"
-                           placeholder="Usuario que registra">
-                    <ngx-validation-message label="First Name"
-                                            [showMinLength]="user?.hasError('minlength')"
-                                            [showMaxLength]="user?.hasError('maxlength')" minLength=3
-                                            maxLength=20></ngx-validation-message>
-                    <p class="error-message caption status-danger"
-                       *ngIf="documentError">
-                        {{nameError}}
-                    </p>
-                </div>
+            <form [formGroup]="formGroup">
 
                 <div class="row">
                     <div class="col-md-6 col-lg-6">
@@ -32,10 +17,11 @@
                             <label for="documentType" class="label">Tipo de Documento*</label>
                             <nb-select
                                     id="documentType"
-                                    selected=""
-                                    formControlName="documentType"
+                                    formControlName="documentTypeId"
                                     fullWidth>
                                 <nb-option value="">Seleccione...</nb-option>
+                                <nb-option *ngFor="let item of listRecord?.documentTypes"
+                                           [value]="item.id">{{item.name}}</nb-option>
                             </nb-select>
                         </div>
                     </div>
@@ -44,10 +30,11 @@
                             <label for="personType" class="label">Tipo de Persona*</label>
                             <nb-select
                                     id="personType"
-                                    selected=""
-                                    formControlName="personType"
+                                    formControlName="personTypeId"
                                     fullWidth>
                                 <nb-option value="">Seleccione...</nb-option>
+                                <nb-option *ngFor="let item of listRecord?.personTypes"
+                                           [value]="item.id">{{item.name}}</nb-option>
                             </nb-select>
                         </div>
                     </div>
@@ -80,13 +67,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="label" for="strongAlias">Alias fuerte</label>
-                    <input fullWidth nbInput id="strongAlias" formControlName="strongAlias"
-                           [status]="(strongAlias?.hasError('minlength') || strongAlias?.hasError('maxlength')) ? 'danger' : 'primary'"
+                    <label class="label" for="alias">Alias fuerte</label>
+                    <input fullWidth nbInput id="alias" formControlName="alias"
+                           [status]="(alias?.hasError('minlength') || alias?.hasError('maxlength')) ? 'danger' : 'primary'"
                            class="form-control" placeholder="Alias fuerte">
                     <ngx-validation-message label="First Name"
-                                            [showMinLength]="strongAlias?.hasError('minlength')"
-                                            [showMaxLength]="strongAlias?.hasError('maxlength')" minLength=3
+                                            [showMinLength]="alias?.hasError('minlength')"
+                                            [showMaxLength]="alias?.hasError('maxlength')" minLength=3
                                             maxLength=20></ngx-validation-message>
                 </div>
 
@@ -102,36 +89,37 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="typeListId" class="label">Lista(s)*</label>
+                    <label for="listTypeId" class="label">Lista(s)*</label>
                     <nb-select
-                            id="typeListId"
-                            selected=""
-                            formControlName="typeListId"
+                            id="listTypeId"
+                            formControlName="personTypeId"
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
+                        <nb-option *ngFor="let item of listRecord?.listTypes"
+                                   [value]="item.id">{{item.name}}</nb-option>
                     </nb-select>
                 </div>
 
                 <div class="form-group">
                     <label for="crime" class="label">Cargo / Delito*</label>
-                    <nb-select
-                            id="crime"
-                            selected=""
-                            formControlName="crime"
-                            fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
-                    </nb-select>
+                    <input fullWidth nbInput id="crime" formControlName="crime"
+                           [status]="(document?.hasError('minlength') || document?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           placeholder="Cargo / Delito">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="document?.hasError('minlength')"
+                                            [showMaxLength]="document?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
                 </div>
 
                 <div class="form-group">
                     <label for="source" class="label">Fuente*</label>
-                    <nb-select
-                            id="source"
-                            selected=""
-                            formControlName="source"
-                            fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
-                    </nb-select>
+                    <input fullWidth nbInput id="source" formControlName="source"
+                           [status]="(document?.hasError('minlength') || document?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           placeholder="Fuente">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="document?.hasError('minlength')"
+                                            [showMaxLength]="document?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
                 </div>
 
                 <div class="form-group">
@@ -157,24 +145,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="status" class="label">Estado</label>
+                    <label for="isActive" class="label">Estado</label>
                     <nb-select
-                            id="status"
+                            id="isActive"
                             selected=""
-                            formControlName="status"
+                            formControlName="isActive"
                             fullWidth>
                         <nb-option value="">Seleccione...</nb-option>
+                        <nb-option value="true">Activo</nb-option>
+                        <nb-option value="false">Inactivo</nb-option>
                     </nb-select>
                 </div>
 
                 <div class="form-group">
-                    <label class="label" for="recordSummary">Resumen Registro*</label>
-                    <input fullWidth nbInput id="recordSummary" formControlName="recordSummary"
-                           [status]="(recordSummary?.hasError('minlength') || recordSummary?.hasError('maxlength')) ? 'danger' : 'primary'"
+                    <label class="label" for="summary">Resumen Registro*</label>
+                    <input fullWidth nbInput id="summary" formControlName="summary"
+                           [status]="(summary?.hasError('minlength') || summary?.hasError('maxlength')) ? 'danger' : 'primary'"
                            class="form-control" placeholder="Resumen Registro">
                     <ngx-validation-message label="First Name"
-                                            [showMinLength]="recordSummary?.hasError('minlength')"
-                                            [showMaxLength]="recordSummary?.hasError('maxlength')" minLength=3
+                                            [showMinLength]="summary?.hasError('minlength')"
+                                            [showMaxLength]="summary?.hasError('maxlength')" minLength=3
                                             maxLength=20></ngx-validation-message>
                 </div>
 
@@ -188,13 +178,58 @@
                                             [showMaxLength]="acts?.hasError('maxlength')" minLength=3
                                             maxLength=20></ngx-validation-message>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="startDate" class="label">Fecha desde</label>
+                            <input id="startDate"
+                                   nbInput
+                                   fullWidth
+                                   placeholder="Fecha desde"
+                                   formControlName="startDate"
+                                   [nbDatepicker]="formpicker">
+                            <nb-datepicker #formpicker></nb-datepicker>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="endDate" class="label">Fecha hasta</label>
+                            <input id="endDate"
+                                   nbInput
+                                   fullWidth
+                                   placeholder="Fecha hasta"
+                                   formControlName="endDate"
+                                   [nbDatepicker]="formpicker2">
+                            <nb-datepicker #formpicker2></nb-datepicker>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="entity">Entidad*</label>
+                    <input fullWidth nbInput id="entity" formControlName="entity"
+                           [status]="(entity?.hasError('minlength') || entity?.hasError('maxlength')) ? 'danger' : 'primary'"
+                           placeholder="Documento de Identidad">
+                    <ngx-validation-message label="First Name"
+                                            [showMinLength]="entity?.hasError('minlength')"
+                                            [showMaxLength]="entity?.hasError('maxlength')" minLength=3
+                                            maxLength=20></ngx-validation-message>
+                    <p class="error-message caption status-danger"
+                       *ngIf="documentError">
+                        {{nameError}}
+                    </p>
+                </div>
             </form>
         </nb-card-body>
         <nb-card-footer>
-                <button nbButton status="primary" [disabled]="!manageRecordForm.valid" (click)="save()" hero>GUARDAR
-                    CAMBIOS
-                </button>
-                <button class="ml-4" nbButton (click)="back($event)" hero>REGRESAR</button>
+            <!--<button nbButton status="primary" [disabled]="!formGroup.valid" (click)="save()" hero>GUARDAR
+                CAMBIOS
+            </button>-->
+            <button nbButton status="primary" (click)="save()" hero>GUARDAR
+                CAMBIOS
+            </button>
+            <button class="ml-4" nbButton (click)="back($event)" hero>REGRESAR</button>
         </nb-card-footer>
     </nb-card>
 </div>

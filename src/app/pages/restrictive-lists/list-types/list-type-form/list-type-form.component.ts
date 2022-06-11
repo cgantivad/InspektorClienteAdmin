@@ -4,8 +4,7 @@ import {NbToastrService} from '@nebular/theme';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ListTypeService} from '../../backend/common/services/list-type.service';
-import {ListGroup} from "../../interfaces/list-group";
-import {ListType} from "../../interfaces/list-type";
+import {ListType} from '../../interfaces/list-type';
 
 @Component({
     selector: 'ngx-list-type-form',
@@ -98,7 +97,6 @@ export class ListTypeFormComponent implements OnInit {
 
     setFormGroup(record: ListType) {
         this.listType = record;
-        console.log('this.listType', this.listType);
         this.formGroup.setValue({
             id: record.id ? record.id : '',
             name: record.name ? record.name : '',
