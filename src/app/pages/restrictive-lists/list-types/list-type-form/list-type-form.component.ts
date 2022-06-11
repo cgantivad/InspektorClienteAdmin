@@ -63,7 +63,7 @@ export class ListTypeFormComponent implements OnInit {
             name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
             description: this.fb.control('', [Validators.required, Validators.minLength(1)]),
             source: this.fb.control('', [Validators.required, Validators.minLength(1)]),
-            listGroupId: this.fb.control(null, [Validators.required]),
+            listGroupId: this.fb.control('', [Validators.required]),
             countryId: this.fb.control('', [Validators.required]),
             periodicityId: this.fb.control('', [Validators.required]),
         });
@@ -97,7 +97,8 @@ export class ListTypeFormComponent implements OnInit {
 
     setFormGroup(record: ListType) {
         this.listType = record;
-        this.formGroup.setValue({
+
+        this.formGroup.patchValue({
             id: record.id ? record.id : '',
             name: record.name ? record.name : '',
             description: record.description ? record.description : '',
@@ -106,6 +107,7 @@ export class ListTypeFormComponent implements OnInit {
             countryId: record.countryId ? record.countryId : '',
             periodicityId: record.periodicityId ? record.periodicityId : '',
         });
+
     }
 
     save() {

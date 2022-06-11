@@ -48,11 +48,11 @@
                     <nb-select
                             id="listGroupId"
                             formControlName="listGroupId"
-                            [(selected)]='listType.listGroupId'
+                            *ngIf="listType != null"
                             fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
-                        <nb-option *ngFor="let listGroup of listType?.listGroups"
-                                   [value]="listGroup.id">{{listGroup.name}}</nb-option>
+                        <nb-option value="" disabled>Seleccione...</nb-option>
+                        <nb-option *ngFor="let item of listType?.listGroups"
+                                   [value]="item.id">{{item.name}}</nb-option>
                     </nb-select>
                 </div>
 
@@ -60,12 +60,12 @@
                     <label for="countryId" class="label">País</label>
                     <nb-select
                             id="countryId"
-                            [(selected)]='listType.countryId'
                             formControlName="countryId"
+                            *ngIf="listType != null"
                             fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
-                        <nb-option *ngFor="let country of listType?.countries"
-                                   [value]="country.id">{{country.name}}</nb-option>
+                        <nb-option value="" disabled>Seleccione...</nb-option>
+                        <nb-option *ngFor="let item of listType?.countries"
+                                   [value]="item.id">{{item.name}}</nb-option>
                     </nb-select>
                 </div>
 
@@ -88,12 +88,12 @@
                     <label for="periodicityId" class="label">Periodicidad</label>
                     <nb-select
                             id="periodicityId"
-                            [(selected)]='listType.periodicityId'
                             formControlName="periodicityId"
+                            *ngIf="listType != null"
                             fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
-                        <nb-option *ngFor="let periodicity of listType?.periodicities"
-                                   [value]="periodicity.id">{{periodicity.name}}</nb-option>
+                        <nb-option value="" disabled>Seleccione...</nb-option>
+                        <nb-option *ngFor="let item of listType?.periodicities"
+                                   [value]="item.id">{{item.name}}</nb-option>
                     </nb-select>
                 </div>
             </form>

@@ -82,8 +82,8 @@ export class ManageRecordsFormComponent implements OnInit {
         return this.formGroup.get('link');
     }
 
-    get isActive() {
-        return this.formGroup.get('isActive');
+    get activated() {
+        return this.formGroup.get('activated');
     }
 
     get summary() {
@@ -114,8 +114,8 @@ export class ManageRecordsFormComponent implements OnInit {
     initForm() {
         this.formGroup = this.fb.group({
             id: this.fb.control(''),
-            documentTypeId: this.fb.control('', [Validators.required, Validators.minLength(1)]),
-            personTypeId: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+            documentTypeId: this.fb.control('', [Validators.required]),
+            personTypeId: this.fb.control('', [Validators.required]),
             document: this.fb.control('', [Validators.required, Validators.minLength(1)]),
             name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
             alias: this.fb.control('', [Validators.required, Validators.minLength(1)]),
@@ -125,7 +125,7 @@ export class ManageRecordsFormComponent implements OnInit {
             source: this.fb.control('', [Validators.required]),
             zone: this.fb.control('', [Validators.required]),
             link: this.fb.control('', [Validators.required]),
-            isActive: this.fb.control('', [Validators.required]),
+            activated: this.fb.control('', [Validators.required]),
             summary: this.fb.control('', [Validators.required]),
             acts: this.fb.control('', [Validators.required]),
             entity: this.fb.control('', [Validators.required]),
@@ -162,7 +162,8 @@ export class ManageRecordsFormComponent implements OnInit {
 
     setFormGroup(record: List) {
         this.listRecord = record;
-        this.formGroup.setValue({
+
+        this.formGroup.patchValue({
             id: record.id ? record.id : '',
             name: record.name ? record.name : '',
             document: record.document ? record.document : '',
@@ -175,7 +176,7 @@ export class ManageRecordsFormComponent implements OnInit {
             summary: record.summary ? record.summary : '',
             acts: record.acts ? record.acts : '',
             entity: record.entity ? record.entity : '',
-            isActive: record.isActive ? record.isActive : '',
+            activated: record.activated ? record.activated : '',
             startDate: record.startDate ? record.startDate : '',
             endDate: record.endDate ? record.endDate : '',
             listTypeId: record.listTypeId ? record.listTypeId : '',
@@ -196,7 +197,7 @@ export class ManageRecordsFormComponent implements OnInit {
             summary: 'resumen',
             acts: 'hechos',
             entity: 'postobón',
-            isActive: true,
+            activated: true,
             startDate: record.startDate ? record.startDate : '',
             endDate: record.endDate ? record.endDate : '',
             listTypeId: record.listTypeId ? record.listTypeId : '',

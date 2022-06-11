@@ -14,12 +14,13 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label for="documentType" class="label">Tipo de Documento*</label>
+                            <label for="documentTypeId" class="label">Tipo de Documento*</label>
                             <nb-select
-                                    id="documentType"
+                                    id="documentTypeId"
                                     formControlName="documentTypeId"
+                                    *ngIf="listRecord != null"
                                     fullWidth>
-                                <nb-option value="">Seleccione...</nb-option>
+                                <nb-option value="" disabled>Seleccione...</nb-option>
                                 <nb-option *ngFor="let item of listRecord?.documentTypes"
                                            [value]="item.id">{{item.name}}</nb-option>
                             </nb-select>
@@ -27,12 +28,13 @@
                     </div>
                     <div class="col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label for="personType" class="label">Tipo de Persona*</label>
+                            <label for="personTypeId" class="label">Tipo de Persona*</label>
                             <nb-select
-                                    id="personType"
+                                    id="personTypeId"
                                     formControlName="personTypeId"
+                                    *ngIf="listRecord != null"
                                     fullWidth>
-                                <nb-option value="">Seleccione...</nb-option>
+                                <nb-option value="" disabled>Seleccione...</nb-option>
                                 <nb-option *ngFor="let item of listRecord?.personTypes"
                                            [value]="item.id">{{item.name}}</nb-option>
                             </nb-select>
@@ -92,9 +94,10 @@
                     <label for="listTypeId" class="label">Lista(s)*</label>
                     <nb-select
                             id="listTypeId"
-                            formControlName="personTypeId"
+                            formControlName="listTypeId"
+                            *ngIf="listRecord != null"
                             fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
+                        <nb-option value="" disabled>Seleccione...</nb-option>
                         <nb-option *ngFor="let item of listRecord?.listTypes"
                                    [value]="item.id">{{item.name}}</nb-option>
                     </nb-select>
@@ -145,15 +148,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="isActive" class="label">Estado</label>
+                    <label for="activated" class="label">Estado</label>
                     <nb-select
-                            id="isActive"
+                            id="activated"
                             selected=""
-                            formControlName="isActive"
+                            formControlName="activated"
+                            *ngIf="listRecord != null"
                             fullWidth>
-                        <nb-option value="">Seleccione...</nb-option>
-                        <nb-option value="true">Activo</nb-option>
-                        <nb-option value="false">Inactivo</nb-option>
+                        <nb-option value="" disabled>Seleccione...</nb-option>
+                        <nb-option [value]="true">Activo</nb-option>
+                        <nb-option [value]="false">Inactivo</nb-option>
                     </nb-select>
                 </div>
 

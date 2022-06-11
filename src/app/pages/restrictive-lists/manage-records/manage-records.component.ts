@@ -1,19 +1,26 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomServerDataSource} from "../../../utils/custom-server.data-source";
-import {Router} from "@angular/router";
+import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
+import {Router} from '@angular/router';
+import {List} from '../interfaces/list';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ListService} from "../backend/common/services/list.service";
 
 @Component({
     selector: 'ngx-manage-records',
     templateUrl: './manage-records.component.html',
-    styleUrls: ['./manage-records.component.scss']
+    styleUrls: ['./manage-records.component.scss'],
 })
 export class ManageRecordsComponent implements OnInit {
 
-    constructor(private router: Router,) {
+    constructor(private router: Router,
+                private fb: FormBuilder,
+                private listService: ListService) {
     }
 
-    search = '';
-    source: CustomServerDataSource;
+    listFilter: List = {};
+    dataSource: CustomServerDataSource;
+    formGroup: FormGroup;
+
     settings = {
         actions: {
             add: false,
@@ -87,10 +94,66 @@ export class ManageRecordsComponent implements OnInit {
         },
     };
 
+    get alias() {
+        return this.formGroup.get('alias');
+    }
+
+    get document() {
+        return this.formGroup.get('document');
+    }
+
+    get entity() {
+        return this.formGroup.get('entity');
+    }
+
+    get listTypeId() {
+        return this.formGroup.get('listTypeId');
+    }
+
+    get activated() {
+        return this.formGroup.get('activated');
+    }
+
+    get source() {
+        return this.formGroup.get('source');
+    }
+
+    get zone() {
+        return this.formGroup.get('zone');
+    }
+
+    get validated() {
+        return this.formGroup.get('validated');
+    }
+
+    get userId() {
+        return this.formGroup.get('userId');
+    }
+
     ngOnInit(): void {
+        this.initForm();
+    }
+
+    initForm() {
+        this.formGroup = this.fb.group({
+            alias: this.fb.control(''),
+            document: this.fb.control(''),
+            entity: this.fb.control(''),
+            listTypeId: this.fb.control(''),
+            activated: this.fb.control(''),
+            source: this.fb.control(''),
+            zone: this.fb.control(''),
+            validated: this.fb.control(''),
+            userId: this.fb.control(''),
+        });
     }
 
     onCreate() {
         this.router.navigate([`/pages/restrictive-lists/manage-records/create`]);
+    }
+
+    search() {
+        const data: List = this.formGroup.value;
+        console.log('form', data);
     }
 }
