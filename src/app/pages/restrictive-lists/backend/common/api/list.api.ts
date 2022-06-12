@@ -21,15 +21,19 @@ export class ListApi {
         return this.api.get(`${this.apiController}/${id}`);
     }
 
-    create(data: List): Observable<List> {
+    create(data: List): Observable<ApiResponse<List>> {
         return this.api.post(`${this.apiController}`, data);
     }
 
-    update(id: number, data: List): Observable<List> {
+    update(id: number, data: List): Observable<ApiResponse<List>> {
         return this.api.put(`${this.apiController}/${id}`, data);
     }
 
-    getBaseList(): Observable<ApiResponse<List>> {
+    getCreateFromData(): Observable<ApiResponse<List>> {
         return this.api.get(`${this.apiController}/create`);
+    }
+
+    getSearchFormFilters() {
+        return this.api.get(`${this.apiController}/filters`);
     }
 }

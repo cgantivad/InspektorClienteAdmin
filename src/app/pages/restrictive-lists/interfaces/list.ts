@@ -19,6 +19,10 @@ export interface List {
     activated?: boolean;
     validated?: boolean;
 
+    listType?: ListType;
+    personType?: Parameter;
+    documentType?: Parameter;
+
     listTypeId?: number;
     personTypeId?: number;
     documentTypeId?: number;

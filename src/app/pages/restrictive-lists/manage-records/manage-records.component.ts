@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
 import {Router} from '@angular/router';
 import {List} from '../interfaces/list';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ListService} from "../backend/common/services/list.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ListService} from '../backend/common/services/list.service';
+import {NbToastrService} from '@nebular/theme';
 
 @Component({
     selector: 'ngx-manage-records',
@@ -14,7 +15,9 @@ export class ManageRecordsComponent implements OnInit {
 
     constructor(private router: Router,
                 private fb: FormBuilder,
+                private toastrService: NbToastrService,
                 private listService: ListService) {
+        this.dataSource = listService.getListServerDataSource();
     }
 
     listFilter: List = {};
@@ -24,6 +27,7 @@ export class ManageRecordsComponent implements OnInit {
     settings = {
         actions: {
             add: false,
+            delete: false,
         },
         mode: 'external',
         add: {
@@ -46,10 +50,13 @@ export class ManageRecordsComponent implements OnInit {
                 type: 'number',
                 filter: false,
             },
-            listName: {
+            listType: {
                 title: 'Nombre Lista',
-                type: 'string',
+                type: 'html',
                 filter: false,
+                valuePrepareFunction: (cell, row) => {
+                    return cell.name;
+                },
             },
             document: {
                 title: 'Documento Identidad',
@@ -61,7 +68,7 @@ export class ManageRecordsComponent implements OnInit {
                 type: 'string',
                 filter: false,
             },
-            strongAlias: {
+            alias: {
                 title: 'Alias fuerte',
                 type: 'string',
                 filter: false,
@@ -71,7 +78,7 @@ export class ManageRecordsComponent implements OnInit {
                 type: 'string',
                 filter: false,
             },
-            status: {
+            activated: {
                 title: 'Estado',
                 type: 'string',
                 filter: false,
@@ -132,6 +139,7 @@ export class ManageRecordsComponent implements OnInit {
 
     ngOnInit(): void {
         this.initForm();
+        this.loadData();
     }
 
     initForm() {
@@ -148,12 +156,29 @@ export class ManageRecordsComponent implements OnInit {
         });
     }
 
+    loadData() {
+        this.listService.getSearchFormFilters()
+            .subscribe(response => {
+                const data = response.data;
+                this.listFilter = {...data};
+            }, error => {
+                this.toastrService.danger('', error, {
+                    icon: '',
+                });
+            });
+    }
+
     onCreate() {
         this.router.navigate([`/pages/restrictive-lists/manage-records/create`]);
     }
 
+    onEdit($event: any) {
+        const record = $event.data;
+        this.router.navigate([`/pages/restrictive-lists/manage-records/edit/${record.id}`]);
+    }
+
     search() {
         const data: List = this.formGroup.value;
-        console.log('form', data);
+        this.dataSource.setSearchFilters({...data});
     }
 }

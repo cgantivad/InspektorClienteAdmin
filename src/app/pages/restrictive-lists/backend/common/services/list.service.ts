@@ -19,15 +19,19 @@ export class ListService {
         return this.api.get(id);
     }
 
-    create(data: List): Observable<List> {
+    create(data: List): Observable<ApiResponse<List>> {
         return this.api.create(data);
     }
 
-    update(id: number, data: List): Observable<List> {
+    update(id: number, data: List): Observable<ApiResponse<List>> {
         return this.api.update(id, data);
     }
 
-    getBaseList(): Observable<ApiResponse<List>> {
-        return this.api.getBaseList();
+    getCreateFromData(): Observable<ApiResponse<List>> {
+        return this.api.getCreateFromData();
+    }
+
+    getSearchFormFilters(): Observable<ApiResponse<List>> {
+        return this.api.getSearchFormFilters();
     }
 }

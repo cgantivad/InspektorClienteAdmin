@@ -31,6 +31,8 @@ import {ListTypeService} from "./backend/common/services/list-type.service";
 import {ListTypeApi} from "./backend/common/api/list-type.api";
 import {ListApi} from "./backend/common/api/list.api";
 import {ListService} from "./backend/common/services/list.service";
+import {ListValidationApi} from "./backend/common/api/list-validation.api";
+import {ListValidationService} from "./backend/common/services/list-validation.service";
 
 @NgModule({
     declarations: [
@@ -73,6 +75,8 @@ import {ListService} from "./backend/common/services/list.service";
         ListTypeService,
         ListApi,
         ListService,
+        ListValidationApi,
+        ListValidationService,
     ],
 })
 

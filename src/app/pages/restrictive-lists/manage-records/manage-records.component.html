@@ -187,6 +187,7 @@
         </div>
 
         <ng2-smart-table class="example-smart-table"
+                         (edit)="onEdit($event)"
                          [settings]="settings"
                          [source]="dataSource">
         </ng2-smart-table>

@@ -1,21 +1,27 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomServerDataSource} from "../../../utils/custom-server.data-source";
+import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
+import {ListValidationService} from '../backend/common/services/list-validation.service';
+import {Subject} from "rxjs/Rx";
 
 @Component({
     selector: 'ngx-validation-records',
     templateUrl: './validation-records.component.html',
-    styleUrls: ['./validation-records.component.scss']
+    styleUrls: ['./validation-records.component.scss'],
 })
 export class ValidationRecordsComponent implements OnInit {
 
-    constructor() {
+    constructor(private listValidationService: ListValidationService) {
+        this.dataSource = listValidationService.getDataSource();
     }
 
-    search = '';
-    source: CustomServerDataSource;
+    searchText = '';
+    searchTextChanged = new Subject<string>();
+    dataSource: CustomServerDataSource;
     settings = {
         actions: {
             add: false,
+            edit: false,
+            delete: false,
         },
         mode: 'external',
         add: {
@@ -38,32 +44,46 @@ export class ValidationRecordsComponent implements OnInit {
                 type: 'number',
                 filter: false,
             },
-            identification: {
+            listType: {
                 title: 'Nombre Lista',
-                type: 'string',
+                type: 'html',
                 filter: false,
+                valuePrepareFunction: (cell, row) => {
+                    return cell.name;
+                },
             },
-            name: {
+            // name: {
+            //     title: 'Tipo Documento',
+            //     type: 'string',
+            //     filter: false,
+            // },
+            documentType: {
                 title: 'Tipo Documento',
-                type: 'string',
+                type: 'html',
                 filter: false,
+                valuePrepareFunction: (cell, row) => {
+                    return cell.name;
+                },
             },
-            lastName: {
+            document: {
                 title: 'Documento Identidad',
                 type: 'string',
                 filter: false,
             },
-            email: {
+            name: {
                 title: 'Nombre Completo',
                 type: 'string',
                 filter: false,
             },
             personType: {
                 title: 'Tipo Persona',
-                type: 'string',
+                type: 'html',
                 filter: false,
+                valuePrepareFunction: (cell, row) => {
+                    return cell.name;
+                },
             },
-            strongAlias: {
+            alias: {
                 title: 'Alias fuerte',
                 type: 'string',
                 filter: false,
@@ -82,13 +102,19 @@ export class ValidationRecordsComponent implements OnInit {
     };
 
     ngOnInit(): void {
+        this.searchTextChanged
+            .debounceTime(250)
+            .distinctUntilChanged()
+            .subscribe((query) => {
+                this.dataSource.setSearchQuery(query);
+            });
     }
 
     onValidated() {
 
     }
 
-    searchUser($event: KeyboardEvent) {
-
+    search($event) {
+        this.searchTextChanged.next($event.target.value);
     }
 }

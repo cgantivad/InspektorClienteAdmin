@@ -3,7 +3,7 @@ import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
 import {Router} from '@angular/router';
 import {ListTypeService} from '../backend/common/services/list-type.service';
 import {Subject} from 'rxjs/Rx';
-import {ColorSmartTableCellComponent} from "../../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component";
+import {ColorSmartTableCellComponent} from '../../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component';
 
 @Component({
     selector: 'ngx-list-types',
@@ -53,10 +53,10 @@ export class ListTypesComponent implements OnInit {
             listGroup: {
                 title: 'Nombre Grupo',
                 type: 'html',
+                filter: false,
                 valuePrepareFunction: (cell, row) => {
                     return cell.name;
                 },
-                filter: false,
             },
             periodicity: {
                 title: 'Periodicidad',

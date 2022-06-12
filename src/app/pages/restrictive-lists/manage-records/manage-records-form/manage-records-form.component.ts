@@ -148,7 +148,7 @@ export class ManageRecordsFormComponent implements OnInit {
                     });
                 });
         } else {
-            this.listService.getBaseList()
+            this.listService.getCreateFromData()
                 .subscribe(response => {
                     const data = response.data;
                     this.setFormGroup(data);
