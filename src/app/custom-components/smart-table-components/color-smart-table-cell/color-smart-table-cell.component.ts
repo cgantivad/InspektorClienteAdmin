@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {ViewCell} from "ng2-smart-table";
+import {ViewCell} from 'ng2-smart-table';
 
 @Component({
   selector: 'ngx-color-smart-table-cell',

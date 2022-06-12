@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
 import {ListValidationService} from '../backend/common/services/list-validation.service';
-import {Subject} from "rxjs/Rx";
+import {Subject} from 'rxjs/Rx';
+import {CheckboxSmartTableCellComponent} from '../../../custom-components/smart-table-components/checkbox-smart-table-cell/checkbox-smart-table-cell.component';
 
 @Component({
     selector: 'ngx-validation-records',
@@ -15,6 +16,8 @@ export class ValidationRecordsComponent implements OnInit {
     }
 
     searchText = '';
+    validated = '';
+    allChecked = false;
     searchTextChanged = new Subject<string>();
     dataSource: CustomServerDataSource;
     settings = {
@@ -52,11 +55,6 @@ export class ValidationRecordsComponent implements OnInit {
                     return cell.name;
                 },
             },
-            // name: {
-            //     title: 'Tipo Documento',
-            //     type: 'string',
-            //     filter: false,
-            // },
             documentType: {
                 title: 'Tipo Documento',
                 type: 'html',
@@ -93,9 +91,15 @@ export class ValidationRecordsComponent implements OnInit {
                 type: 'string',
                 filter: false,
             },
-            status: {
+            activated: {
                 title: 'Estado',
                 type: 'string',
+                filter: false,
+            },
+            validated: {
+                title: 'Validar',
+                type: 'custom',
+                renderComponent: CheckboxSmartTableCellComponent,
                 filter: false,
             },
         },
@@ -106,7 +110,7 @@ export class ValidationRecordsComponent implements OnInit {
             .debounceTime(250)
             .distinctUntilChanged()
             .subscribe((query) => {
-                this.dataSource.setSearchQuery(query);
+                this.refreshDataSource();
             });
     }
 
@@ -114,7 +118,27 @@ export class ValidationRecordsComponent implements OnInit {
 
     }
 
+    onCheckAllChange(value) {
+        this.dataSource.getElements().then(data => {
+            let newData = data.map(item => {
+                item.validated = value;
+            });
+            console.log('data', data);
+        });
+    }
+
+    onChangeValidateStatusFilter($event) {
+        this.refreshDataSource();
+    }
+
     search($event) {
         this.searchTextChanged.next($event.target.value);
+    }
+
+    refreshDataSource() {
+        this.dataSource.setSearchFilters({
+            query: this.searchText,
+            validated: this.validated,
+        });
     }
 }

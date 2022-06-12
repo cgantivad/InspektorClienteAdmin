@@ -27,12 +27,13 @@ import {ListGroupApi} from './backend/common/api/list-group.api';
 import {ColorSmartTableCellComponent} from '../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component';
 import { ListGroupComponent } from './list-group/list-group.component';
 import { ListGroupFormComponent } from './list-group/list-group-form/list-group-form.component';
-import {ListTypeService} from "./backend/common/services/list-type.service";
-import {ListTypeApi} from "./backend/common/api/list-type.api";
-import {ListApi} from "./backend/common/api/list.api";
-import {ListService} from "./backend/common/services/list.service";
-import {ListValidationApi} from "./backend/common/api/list-validation.api";
-import {ListValidationService} from "./backend/common/services/list-validation.service";
+import {ListTypeService} from './backend/common/services/list-type.service';
+import {ListTypeApi} from './backend/common/api/list-type.api';
+import {ListApi} from './backend/common/api/list.api';
+import {ListService} from './backend/common/services/list.service';
+import {ListValidationApi} from './backend/common/api/list-validation.api';
+import {ListValidationService} from './backend/common/services/list-validation.service';
+import {CheckboxSmartTableCellComponent} from '../../custom-components/smart-table-components/checkbox-smart-table-cell/checkbox-smart-table-cell.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import {ListValidationService} from "./backend/common/services/list-validation.s
         ManageListsComponent,
         ValidationRecordsComponent,
         ColorSmartTableCellComponent,
+        CheckboxSmartTableCellComponent,
         ListGroupComponent,
         ListGroupFormComponent,
     ],

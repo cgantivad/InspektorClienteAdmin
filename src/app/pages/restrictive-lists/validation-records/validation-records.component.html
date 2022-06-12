@@ -8,15 +8,19 @@
             <div class="col-md-3">
                 <nb-select
                         id="validationStatus"
-                        selected=""
+                        placeholder="Estado de Validación"
+                        [(selected)]="validated"
+                        (selectedChange)="onChangeValidateStatusFilter($event)"
                         fullWidth>
-                    <nb-option value="">Seleccione...</nb-option>
                     <nb-option value="true">VALIDADO</nb-option>
                     <nb-option value="false">NO VALIDADO</nb-option>
                 </nb-select>
             </div>
             <div class="col-md-3">
-                <nb-checkbox>Validar todos</nb-checkbox>
+                <nb-checkbox
+                        (checkedChange)="onCheckAllChange($event)">
+                    Validar todos
+                </nb-checkbox>
             </div>
 
             <div class="col-md-6">
