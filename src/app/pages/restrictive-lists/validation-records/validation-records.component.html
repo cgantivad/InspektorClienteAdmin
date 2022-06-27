@@ -5,7 +5,7 @@
 
     <nb-card-body>
         <div class="row mb-3">
-            <div class="col-md-3">
+            <!--<div class="col-md-3">
                 <nb-select
                         id="validationStatus"
                         placeholder="Estado de Validación"
@@ -21,9 +21,9 @@
                         (checkedChange)="onCheckAllChange($event)">
                     Validar todos
                 </nb-checkbox>
-            </div>
+            </div>-->
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <nb-form-field>
                     <input [(ngModel)]="searchText"
                            (keyup)="search($event)"
@@ -57,6 +57,7 @@
 
         <ng2-smart-table class="example-smart-table"
                          [settings]="settings"
+                         (userRowSelect)="onRowSelect($event)"
                          [source]="dataSource">
         </ng2-smart-table>
 

@@ -230,7 +230,7 @@
             <!--<button nbButton status="primary" [disabled]="!formGroup.valid" (click)="save()" hero>GUARDAR
                 CAMBIOS
             </button>-->
-            <button nbButton status="primary" (click)="save()" hero>GUARDAR
+            <button nbButton status="primary" [disabled]="!formGroup.valid" (click)="save()" hero>GUARDAR
                 CAMBIOS
             </button>
             <button class="ml-4" nbButton (click)="back($event)" hero>REGRESAR</button>

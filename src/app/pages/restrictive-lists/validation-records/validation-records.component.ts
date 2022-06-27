@@ -3,6 +3,7 @@ import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
 import {ListValidationService} from '../backend/common/services/list-validation.service';
 import {Subject} from 'rxjs/Rx';
 import {CheckboxSmartTableCellComponent} from '../../../custom-components/smart-table-components/checkbox-smart-table-cell/checkbox-smart-table-cell.component';
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
     selector: 'ngx-validation-records',
@@ -11,16 +12,20 @@ import {CheckboxSmartTableCellComponent} from '../../../custom-components/smart-
 })
 export class ValidationRecordsComponent implements OnInit {
 
-    constructor(private listValidationService: ListValidationService) {
+    constructor(private listValidationService: ListValidationService,
+                private toastrService: NbToastrService,
+    ) {
         this.dataSource = listValidationService.getDataSource();
     }
 
+    ids = [];
     searchText = '';
     validated = '';
     allChecked = false;
     searchTextChanged = new Subject<string>();
     dataSource: CustomServerDataSource;
     settings = {
+        selectMode: 'multi',
         actions: {
             add: false,
             edit: false,
@@ -96,12 +101,12 @@ export class ValidationRecordsComponent implements OnInit {
                 type: 'string',
                 filter: false,
             },
-            validated: {
-                title: 'Validar',
-                type: 'custom',
-                renderComponent: CheckboxSmartTableCellComponent,
-                filter: false,
-            },
+            // validated: {
+            //     title: 'Validar',
+            //     type: 'custom',
+            //     renderComponent: CheckboxSmartTableCellComponent,
+            //     filter: false,
+            // },
         },
     };
 
@@ -115,7 +120,17 @@ export class ValidationRecordsComponent implements OnInit {
     }
 
     onValidated() {
-
+        this.listValidationService.validate(this.ids)
+            .subscribe(() => {
+                this.toastrService.success('', '¡Registros validados!', {
+                    icon: '',
+                });
+                this.dataSource.refresh();
+            }, error => {
+                this.toastrService.danger('', error, {
+                    icon: '',
+                });
+            })
     }
 
     onCheckAllChange(value) {
@@ -140,5 +155,9 @@ export class ValidationRecordsComponent implements OnInit {
             query: this.searchText,
             validated: this.validated,
         });
+    }
+
+    onRowSelect(event) {
+        this.ids = event.selected.map(item => item.id);
     }
 }

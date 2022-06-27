@@ -13,4 +13,8 @@ export class ListValidationApi {
     getDataSource(): CustomServerDataSource {
         return this.api.getServerDataSource(`${this.apiController}`);
     }
+
+    validate(ids: number[]) {
+        return this.api.put(this.apiController, ids);
+    }
 }
