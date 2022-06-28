@@ -10,6 +10,8 @@ import { ListpepsComponent } from './components/listpeps/listpeps.component';
 import { NamesdocumentsComponent } from './components/namesdocuments/namesdocuments.component';
 import { ContentsComponent } from './components/contents/contents.component';
 import { EntitiesComponent } from './components/entities/entities.component';
+import { UsersComponent } from '../users/users.component';
+import { UserscompanyComponent } from './components/userscompany/userscompany.component';
 
 const routes: Routes = [{
   path: '',
@@ -45,6 +47,10 @@ const routes: Routes = [{
             {
               path: 'contents',
               component: ContentsComponent,
+            },
+            {
+              path: 'users',
+              component: UserscompanyComponent,
             }
           ],
 }];
@@ -63,5 +69,6 @@ export const routedComponents = [
     ListpepsComponent,
     NamesdocumentsComponent,
     ContentsComponent,
-    EntitiesComponent
+    EntitiesComponent,
+    UserscompanyComponent
 ];

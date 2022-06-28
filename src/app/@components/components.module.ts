@@ -11,10 +11,14 @@ import { NgxValidationMessageComponent } from './validation-message/validation-m
 import {
   NgxFilterByNumberComponent,
 } from './custom-smart-table-components/filter-by-number/filter-by-number.component';
+import { NbDatepickerModule, NbInputModule } from '@nebular/theme';
+import { SmartTableDatepickerComponent, SmartTableDatepickerRenderComponent } from './editors/smart-table-datepicker/smart-table-datepicker.component';
 
 const COMPONENTS = [
   NgxValidationMessageComponent,
   NgxFilterByNumberComponent,
+  SmartTableDatepickerComponent,
+  SmartTableDatepickerRenderComponent
 ];
 
 @NgModule({
@@ -22,11 +26,14 @@ const COMPONENTS = [
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    NbDatepickerModule,
+    NbInputModule
+
   ],
   exports: [...COMPONENTS],
   declarations: [...COMPONENTS],
   entryComponents: [
-    NgxFilterByNumberComponent,
+    NgxFilterByNumberComponent,  
   ],
 })
 export class ComponentsModule {
