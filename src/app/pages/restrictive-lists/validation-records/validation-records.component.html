@@ -5,22 +5,28 @@
 
     <nb-card-body>
         <div class="row mb-3">
-            <div class="col-md-3">
+            <!--<div class="col-md-3">
                 <nb-select
                         id="validationStatus"
-                        selected=""
+                        placeholder="Estado de Validación"
+                        [(selected)]="validated"
+                        (selectedChange)="onChangeValidateStatusFilter($event)"
                         fullWidth>
-                    <nb-option value="">Seleccione...</nb-option>
+                    <nb-option value="true">VALIDADO</nb-option>
+                    <nb-option value="false">NO VALIDADO</nb-option>
                 </nb-select>
             </div>
             <div class="col-md-3">
-                <nb-checkbox>Validar todos</nb-checkbox>
-            </div>
+                <nb-checkbox
+                        (checkedChange)="onCheckAllChange($event)">
+                    Validar todos
+                </nb-checkbox>
+            </div>-->
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <nb-form-field>
-                    <input [(ngModel)]="search"
-                           (keyup)="searchUser($event)"
+                    <input [(ngModel)]="searchText"
+                           (keyup)="search($event)"
                            fullWidth
                            nbInput>
                     <button ghost nbButton nbSuffix>
@@ -51,7 +57,8 @@
 
         <ng2-smart-table class="example-smart-table"
                          [settings]="settings"
-                         [source]="source">
+                         (userRowSelect)="onRowSelect($event)"
+                         [source]="dataSource">
         </ng2-smart-table>
 
     </nb-card-body>

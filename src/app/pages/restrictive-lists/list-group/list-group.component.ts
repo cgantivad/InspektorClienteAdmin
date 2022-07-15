@@ -1,24 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
 import {Router} from '@angular/router';
-import {ListTypeService} from '../backend/common/services/list-type.service';
-import {Subject} from 'rxjs/Rx';
+import {ListGroupService} from '../backend/common/services/list-group.service';
+import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
 import {ColorSmartTableCellComponent} from '../../../custom-components/smart-table-components/color-smart-table-cell/color-smart-table-cell.component';
+import {Subject} from 'rxjs/Rx';
 
 @Component({
-    selector: 'ngx-list-types',
-    templateUrl: './list-types.component.html',
-    styleUrls: ['./list-types.component.scss'],
+    selector: 'ngx-list-group',
+    templateUrl: './list-group.component.html',
+    styleUrls: ['./list-group.component.scss'],
 })
-export class ListTypesComponent implements OnInit {
+export class ListGroupComponent implements OnInit {
 
-    constructor(private router: Router, private listTypeService: ListTypeService,
+    constructor(private router: Router,
+                private listGroupService: ListGroupService,
     ) {
-        this.source = this.listTypeService.getListTypesServerDataSource();
+        this.source = this.listGroupService.getListGroupsServerDataSource();
     }
 
-    searchText = '';
     searchTextChanged = new Subject<string>();
+    searchText = '';
     source: CustomServerDataSource;
     settings = {
         actions: {
@@ -41,29 +42,18 @@ export class ListTypesComponent implements OnInit {
         },
         columns: {
             id: {
-                title: 'Codigo Lista',
+                title: 'ID',
                 type: 'number',
                 filter: false,
             },
             name: {
-                title: 'Nombre Lista',
+                title: 'Nombre de Grupo',
                 type: 'string',
                 filter: false,
             },
-            listGroup: {
-                title: 'Nombre Grupo',
-                type: 'html',
-                filter: false,
-                valuePrepareFunction: (cell, row) => {
-                    return cell.name;
-                },
-            },
-            periodicity: {
-                title: 'Periodicidad',
-                type: 'html',
-                valuePrepareFunction: (cell, row) => {
-                    return cell.name;
-                },
+            description: {
+                title: 'Descripción',
+                type: 'string',
                 filter: false,
             },
             color: {
@@ -85,12 +75,12 @@ export class ListTypesComponent implements OnInit {
     }
 
     onCreate() {
-        this.router.navigate([`/pages/restrictive-lists/list-types/create`]);
+        this.router.navigate([`/pages/restrictive-lists/list-groups/create`]);
     }
 
     onEdit($event: any) {
-        const record = $event.data;
-        this.router.navigate([`/pages/restrictive-lists/list-types/edit/${record.id}`]);
+        const user = $event.data;
+        this.router.navigate([`/pages/restrictive-lists/list-groups/edit/${user.id}`]);
     }
 
     search($event) {

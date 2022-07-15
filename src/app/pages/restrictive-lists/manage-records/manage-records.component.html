@@ -4,13 +4,14 @@
     </nb-card-header>
 
     <nb-card-body>
-        <form>
+        <form [formGroup]="formGroup">
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <input
                                 nbInput
                                 fullWidth
+                                formControlName="alias"
                                 class="form-control"
                                 placeholder="Alias fuerte"/>
                     </div>
@@ -21,6 +22,7 @@
                         <input
                                 nbInput
                                 fullWidth
+                                formControlName="document"
                                 class="form-control"
                                 placeholder="Número Identificación"/>
                     </div>
@@ -31,6 +33,7 @@
                         <input
                                 nbInput
                                 fullWidth
+                                formControlName="entity"
                                 class="form-control"
                                 placeholder="Entidad"/>
                     </div>
@@ -40,11 +43,15 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input
-                                nbInput
-                                fullWidth
-                                class="form-control"
-                                placeholder="Listas"/>
+                        <nb-select
+                                id="listTypeId"
+                                formControlName="listTypeId"
+                                *ngIf="listFilter != null"
+                                fullWidth>
+                            <nb-option value="" disabled>Listas</nb-option>
+                            <nb-option *ngFor="let item of listFilter?.listTypes"
+                                       [value]="item.id">{{item.name}}</nb-option>
+                        </nb-select>
                     </div>
                 </div>
 
@@ -64,7 +71,7 @@
                                 nbInput
                                 fullWidth
                                 class="form-control"
-                                placeholder="Entidad"/>
+                                placeholder="AQUI VA RANGO FECHAS"/>
                     </div>
                 </div>
             </div>
@@ -82,11 +89,15 @@
 
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input
-                                nbInput
-                                fullWidth
-                                class="form-control"
-                                placeholder="Usuario que registró"/>
+                        <nb-select
+                                id="userId"
+                                formControlName="userId"
+                                *ngIf="listFilter != null"
+                                fullWidth>
+                            <nb-option value="" disabled>Usuario que registró</nb-option>
+                            <nb-option *ngFor="let item of listFilter?.users"
+                                       [value]="item.id">{{item.name}}</nb-option>
+                        </nb-select>
                     </div>
                 </div>
 
@@ -95,6 +106,7 @@
                         <input
                                 nbInput
                                 fullWidth
+                                formControlName="source"
                                 class="form-control"
                                 placeholder="Fuente"/>
                     </div>
@@ -107,6 +119,7 @@
                         <input
                                 nbInput
                                 fullWidth
+                                formControlName="zone"
                                 class="form-control"
                                 placeholder="Zona"/>
                     </div>
@@ -114,21 +127,30 @@
 
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input
-                                nbInput
-                                fullWidth
-                                class="form-control"
-                                placeholder="Estado"/>
+                        <nb-select
+                                id="activated"
+                                selected=""
+                                formControlName="activated"
+                                *ngIf="listFilter != null"
+                                fullWidth>
+                            <nb-option value="" disabled>Estado</nb-option>
+                            <nb-option [value]="true">Activo</nb-option>
+                            <nb-option [value]="false">Inactivo</nb-option>
+                        </nb-select>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input
-                                nbInput
-                                fullWidth
-                                class="form-control"
-                                placeholder="Estado validado"/>
+                        <nb-select
+                                id="validationStatus"
+                                placeholder="Estado"
+                                formControlName="validated"
+                                fullWidth>
+                            <nb-option value="">Estado validado</nb-option>
+                            <nb-option value="true">VALIDADO</nb-option>
+                            <nb-option value="false">NO VALIDADO</nb-option>
+                        </nb-select>
                     </div>
                 </div>
             </div>
@@ -136,6 +158,7 @@
 
         <div>
             <button
+                    (click)="search()"
                     class="align-self-center"
                     status="primary"
                     nbButton
@@ -161,20 +184,12 @@
             <div class="col-md-1">
                 <button (click)="onCreate()" status="primary" nbButton nbSuffix>Agregar</button>
             </div>
-            <div class="col-md-11">
-                <!--                <nb-form-field>-->
-                <!--                    <button ghost nbButton nbSuffix>-->
-                <!--                        <nb-icon [icon]="'search-outline'"-->
-                <!--                                 pack="eva">-->
-                <!--                        </nb-icon>-->
-                <!--                    </button>-->
-                <!--                </nb-form-field>-->
-            </div>
         </div>
 
         <ng2-smart-table class="example-smart-table"
+                         (edit)="onEdit($event)"
                          [settings]="settings"
-                         [source]="source">
+                         [source]="dataSource">
         </ng2-smart-table>
 
     </nb-card-body>

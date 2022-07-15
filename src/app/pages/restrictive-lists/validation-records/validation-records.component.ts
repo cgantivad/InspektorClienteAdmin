@@ -1,21 +1,35 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomServerDataSource} from "../../../utils/custom-server.data-source";
+import {CustomServerDataSource} from '../../../utils/custom-server.data-source';
+import {ListValidationService} from '../backend/common/services/list-validation.service';
+import {Subject} from 'rxjs/Rx';
+import {CheckboxSmartTableCellComponent} from '../../../custom-components/smart-table-components/checkbox-smart-table-cell/checkbox-smart-table-cell.component';
+import {NbToastrService} from "@nebular/theme";
 
 @Component({
     selector: 'ngx-validation-records',
     templateUrl: './validation-records.component.html',
-    styleUrls: ['./validation-records.component.scss']
+    styleUrls: ['./validation-records.component.scss'],
 })
 export class ValidationRecordsComponent implements OnInit {
 
-    constructor() {
+    constructor(private listValidationService: ListValidationService,
+                private toastrService: NbToastrService,
+    ) {
+        this.dataSource = listValidationService.getDataSource();
     }
 
-    search = '';
-    source: CustomServerDataSource;
+    ids = [];
+    searchText = '';
+    validated = '';
+    allChecked = false;
+    searchTextChanged = new Subject<string>();
+    dataSource: CustomServerDataSource;
     settings = {
+        selectMode: 'multi',
         actions: {
             add: false,
+            edit: false,
+            delete: false,
         },
         mode: 'external',
         add: {
@@ -38,32 +52,41 @@ export class ValidationRecordsComponent implements OnInit {
                 type: 'number',
                 filter: false,
             },
-            identification: {
+            listType: {
                 title: 'Nombre Lista',
-                type: 'string',
+                type: 'html',
                 filter: false,
+                valuePrepareFunction: (cell, row) => {
+                    return cell.name;
+                },
             },
-            name: {
+            documentType: {
                 title: 'Tipo Documento',
-                type: 'string',
+                type: 'html',
                 filter: false,
+                valuePrepareFunction: (cell, row) => {
+                    return cell.name;
+                },
             },
-            lastName: {
+            document: {
                 title: 'Documento Identidad',
                 type: 'string',
                 filter: false,
             },
-            email: {
+            name: {
                 title: 'Nombre Completo',
                 type: 'string',
                 filter: false,
             },
             personType: {
                 title: 'Tipo Persona',
-                type: 'string',
+                type: 'html',
                 filter: false,
+                valuePrepareFunction: (cell, row) => {
+                    return cell.name;
+                },
             },
-            strongAlias: {
+            alias: {
                 title: 'Alias fuerte',
                 type: 'string',
                 filter: false,
@@ -73,22 +96,68 @@ export class ValidationRecordsComponent implements OnInit {
                 type: 'string',
                 filter: false,
             },
-            status: {
+            activated: {
                 title: 'Estado',
                 type: 'string',
                 filter: false,
             },
+            // validated: {
+            //     title: 'Validar',
+            //     type: 'custom',
+            //     renderComponent: CheckboxSmartTableCellComponent,
+            //     filter: false,
+            // },
         },
     };
 
     ngOnInit(): void {
+        this.searchTextChanged
+            .debounceTime(250)
+            .distinctUntilChanged()
+            .subscribe((query) => {
+                this.refreshDataSource();
+            });
     }
 
     onValidated() {
-
+        this.listValidationService.validate(this.ids)
+            .subscribe(() => {
+                this.toastrService.success('', '¡Registros validados!', {
+                    icon: '',
+                });
+                this.dataSource.refresh();
+            }, error => {
+                this.toastrService.danger('', error, {
+                    icon: '',
+                });
+            })
     }
 
-    searchUser($event: KeyboardEvent) {
+    onCheckAllChange(value) {
+        this.dataSource.getElements().then(data => {
+            let newData = data.map(item => {
+                item.validated = value;
+            });
+            console.log('data', data);
+        });
+    }
 
+    onChangeValidateStatusFilter($event) {
+        this.refreshDataSource();
+    }
+
+    search($event) {
+        this.searchTextChanged.next($event.target.value);
+    }
+
+    refreshDataSource() {
+        this.dataSource.setSearchFilters({
+            query: this.searchText,
+            validated: this.validated,
+        });
+    }
+
+    onRowSelect(event) {
+        this.ids = event.selected.map(item => item.id);
     }
 }
